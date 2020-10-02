@@ -1,0 +1,28 @@
+<h1>Books</h1>
+
+<button *ngIf="loggedIn()" [routerLink]='["/book-add"]' class="btn-primary btn-primary-primary">Add book </button>
+
+<table class="table" *ngIf="books && books.length">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Sales price</th>
+      <th>Description</th>
+      <th>Publishing Info</th>
+      <th>Author Id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{book.title}}</td>
+      <td>{{book.salesPrice}}</td>
+      <td>{{book.description}}</td>
+      <td>{{book.publishingInfo}}</td>
+      <td>{{book.authorId}}</td>
+      <td>
+        <button [routerLink]='["/book-edit/" + book.id]'>Edit</button>
+        <button (click)="delete(book)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

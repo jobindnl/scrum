@@ -1,0 +1,70 @@
+<h1>Enter Information</h1>
+<form class="form-horizontal" novalidate
+      [formGroup]="formGroup">
+  <fieldset>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('email').touched || formGroup.get('email').dirty) && !formGroup.get('email').valid }">
+      <label class="col-md-2 control-label"
+             for="emailId">Email</label>
+      <div class="col-md-8">
+        <input class="form-control"
+               id="emailId"
+               type="text"
+               required
+               formControlName="email" />
+        <span class="help-block" *ngIf="(formGroup.get('email').touched || formGroup.get('email').dirty) && formGroup.get('email').errors">
+          <span *ngIf="formGroup.get('email').errors.required">
+            Please Enter Email
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('password').touched || formGroup.get('password').dirty) && !formGroup.get('password').valid }">
+      <label class="col-md-2 control-label"
+             for="passwordId">Password</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="passwordId"
+               type="password"
+               required
+               formControlName="password" />
+        <span class="help-block" *ngIf="(formGroup.get('password').touched || formGroup.get('password').dirty) && formGroup.get('password').errors">
+          <span *ngIf="formGroup.get('password').errors.required">
+            Please Enter Password
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-6 col-md-offset-2">
+        <span>
+          <button class="btn btn-primary"
+                  type="button"
+                  (click)="login()"
+                  [disabled]="!formGroup.valid">
+            Login
+          </button>
+          <button class="btn btn-primary"
+                  type="button"
+                  (click)="register()"
+                  [disabled]="!formGroup.valid">
+            Register
+          </button>
+          <button class="btn"
+                  type="button"
+                  [routerLink]='["/"]'>
+            Cancel
+          </button>
+        </span>
+
+      </div>
+
+    </div>
+
+  </fieldset>
+</form>
