@@ -1,0 +1,138 @@
+<h1>{{editMode ? 'Edit' : 'Add'}} Book</h1>
+<form class="form-horizontal" novalidate
+      (ngSubmit)="save()" [formGroup]="formGroup">
+  <fieldset>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('title').touched || formGroup.get('title').dirty) && !formGroup.get('title').valid }">
+      <label class="col-md-2 control-label"
+             for="nombreId">Title</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="bookId"
+               type="text"
+               required
+               formControlName="title" />
+        <span class="help-block" *ngIf="(formGroup.get('title').touched || formGroup.get('title').dirty) && formGroup.get('title').errors">
+          <span *ngIf="formGroup.get('title').errors.required">
+            Please enter title.
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('salesPrice').touched || formGroup.get('salesPrice').dirty) && !formGroup.get('salesPrice').valid }">
+      <label class="col-md-2 control-label"
+             for="salesPrice">Sales Price</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="salesPrice"
+               type="number"
+               required
+               formControlName="salesPrice" />
+        <span class="help-block" *ngIf="(formGroup.get('salesPrice').touched || formGroup.get('salesPrice').dirty) && formGroup.get('salesPrice').errors">
+          <span *ngIf="formGroup.get('salesPrice').errors.required">
+            Please enter price
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('description').touched || formGroup.get('description').dirty) && !formGroup.get('description').valid }">
+      <label class="col-md-2 control-label"
+             for="description">Description</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="description"
+               type="text"
+               required
+               formControlName="description" />
+        <span class="help-block" *ngIf="(formGroup.get('description').touched || formGroup.get('description').dirty) && formGroup.get('description').errors">
+          <span *ngIf="formGroup.get('description').errors.required">
+            Please enter description
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('publishingInfo').touched || formGroup.get('publishingInfo').dirty) && !formGroup.get('publishingInfo').valid }">
+      <label class="col-md-2 control-label"
+             for="publishingInfo">publishingInfo</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="publishingInfo"
+               type="text"
+               required
+               formControlName="publishingInfo" />
+        <span class="help-block" *ngIf="(formGroup.get('publishingInfo').touched || formGroup.get('publishingInfo').dirty) && formGroup.get('publishingInfo').errors">
+          <span *ngIf="formGroup.get('publishingInfo').errors.required">
+            Please enter publishing information
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('authorId').touched || formGroup.get('authorId').dirty) && !formGroup.get('authorId').valid }">
+      <label class="col-md-2 control-label"
+             for="authorId">authorId</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="authorId"
+               type="number"
+               required
+               formControlName="authorId" />
+        <span class="help-block" *ngIf="(formGroup.get('authorId').touched || formGroup.get('authorId').dirty) && formGroup.get('authorId').errors">
+          <span *ngIf="formGroup.get('authorId').errors.required">
+            Please enter author Id
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('genreId').touched || formGroup.get('genreId').dirty) && !formGroup.get('genreId').valid }">
+      <label class="col-md-2 control-label"
+             for="genreId">genreId</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="genreId"
+               type="number"
+               required
+               formControlName="genreId" />
+        <span class="help-block" *ngIf="(formGroup.get('genreId').touched || formGroup.get('genreId').dirty) && formGroup.get('genreId').errors">
+          <span *ngIf="formGroup.get('genreId').errors.required">
+            Please enter genre Id
+          </span>
+        </span>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-2">
+        <span>
+          <button class="btn btn-primary"
+                  type="submit"
+                  [disabled]="!formGroup.valid">
+            Save
+          </button>
+          <button class="btn"
+                  type="button"
+                  [routerLink]="['/book']">
+            Cancel
+          </button>
+        </span>
+
+      </div>
+
+    </div>
+  </fieldset>
+</form>
