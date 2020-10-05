@@ -21,6 +21,8 @@ import { RegisterComponent } from './account/register/register.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AccountService } from './account/account.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { CreditCardComponent } from './credit-card/credit-card.component';
+import { CreditCardFormComponent } from './credit-card/credit-card-form/credit-card-form.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     BookFormComponent,
     GenreFormComponent,
     AuthorFormComponent,
-    RegisterComponent
+    RegisterComponent,
+    CreditCardComponent,
+    CreditCardFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,16 +51,18 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuardService] },
       { path: 'genre', component: GenreComponent },
       { path: 'author', component: AuthorComponent },
-      { path: 'book', component: BookComponent},
+      { path: 'book', component: BookComponent },
+      { path: 'book-add', component: BookFormComponent, canActivate: [AuthGuardService] },
+      { path: 'book-edit/:id', component: BookFormComponent, canActivate: [AuthGuardService] },
       { path: 'genre-add', component: GenreFormComponent, canActivate: [AuthGuardService] },
       { path: 'author-add', component: AuthorFormComponent, canActivate: [AuthGuardService] },
-      { path: 'book-add', component: BookFormComponent, canActivate: [AuthGuardService]},
-      { path: 'book-edit/:id', component: BookFormComponent, canActivate: [AuthGuardService]},
+      { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuardService] },
       { path: 'register-login', component: RegisterComponent },
-
+      { path: 'credit-card', component: CreditCardComponent },
+      { path: 'credit-card-add', component: CreditCardFormComponent },
+      { path: 'credit-card-edit/:id', component: CreditCardFormComponent },
     ])
   ],
   providers: [BookService,

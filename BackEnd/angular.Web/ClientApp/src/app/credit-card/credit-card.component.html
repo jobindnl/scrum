@@ -1,0 +1,28 @@
+<h1>Credit Cards</h1>
+
+<button *ngIf="loggedIn()" [routerLink]='["/credit-card-add"]' class="btn-primary btn-primary-primary">Add Credit Card </button>
+
+<table class="table" *ngIf="creditCards && creditCards.length">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Expiration Month</th>
+      <th>Expiration Year</th>
+      <th>CVV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let creditCard of creditCards">
+      <td>{{creditCard.name}}</td>
+      <td>{{creditCard.number}}</td>
+      <td>{{creditCard.expMonth}}</td>
+      <td>{{creditCard.expYear}}</td>
+      <td>{{creditCard.cvv}}</td>
+      <td>
+        <button [routerLink]='["/credit-card-edit/" + creditCard.id]'>Edit</button>
+        <button (click)="delete(creditCard)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

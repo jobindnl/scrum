@@ -37,6 +37,12 @@
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/user-profile']">Account</a>
           </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/credit-card']">Credit Card</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/address']">Address</a>
+          </li>
           <li *ngIf="!loggedIn()" [routerLinkActive]='["link-active"]'>
             <a [routerLink]='["/register-login"]' (click)='collapse()'>Register / Login</a>
           </li>
