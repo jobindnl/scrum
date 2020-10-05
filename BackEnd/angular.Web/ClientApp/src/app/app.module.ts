@@ -23,6 +23,8 @@ import { AccountService } from './account/account.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CreditCardComponent } from './credit-card/credit-card.component';
 import { CreditCardFormComponent } from './credit-card/credit-card-form/credit-card-form.component'
+import { AddressComponent } from './address/address.component';
+import { AddressFormComponent } from './address/address-form/address-form.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { CreditCardFormComponent } from './credit-card/credit-card-form/credit-c
     AuthorFormComponent,
     RegisterComponent,
     CreditCardComponent,
-    CreditCardFormComponent
+    CreditCardFormComponent,
+    AddressComponent,
+    AddressFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -63,6 +67,9 @@ import { CreditCardFormComponent } from './credit-card/credit-card-form/credit-c
       { path: 'credit-card', component: CreditCardComponent },
       { path: 'credit-card-add', component: CreditCardFormComponent },
       { path: 'credit-card-edit/:id', component: CreditCardFormComponent },
+      { path: 'address', component: AddressComponent },
+      { path: 'address-add', component: AddressFormComponent },
+      { path: 'address-edit/:id', component: AddressFormComponent },
     ])
   ],
   providers: [BookService,

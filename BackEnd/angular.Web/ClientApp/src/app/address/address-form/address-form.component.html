@@ -1,0 +1,119 @@
+<h1>{{editMode ? 'Edit' : 'Add'}} Address</h1>
+<form class="form-horizontal" novalidate
+      (ngSubmit)="save()" [formGroup]="formGroup">
+  <fieldset>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('streetAddress').touched || formGroup.get('streetAddress').dirty) && !formGroup.get('streetAddress').valid }">
+      <label class="col-md-2 control-label"
+             for="nombreId">StreetAddress</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="streetAddress"
+               type="text"
+               required
+               formControlName="streetAddress" />
+        <span class="help-block" *ngIf="(formGroup.get('streetAddress').touched || formGroup.get('streetAddress').dirty) && formGroup.get('streetAddress').errors">
+          <span *ngIf="formGroup.get('streetAddress').errors.required">
+            Please enter Street Address.
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('city').touched || formGroup.get('city').dirty) && !formGroup.get('city').valid }">
+      <label class="col-md-2 control-label"
+             for="city">City</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="city"
+               type="text"
+               required
+               formControlName="city" />
+        <span class="help-block" *ngIf="(formGroup.get('city').touched || formGroup.get('city').dirty) && formGroup.get('city').errors">
+          <span *ngIf="formGroup.get('city').errors.required">
+            Please enter city
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('state').touched || formGroup.get('state').dirty) && !formGroup.get('state').valid }">
+      <label class="col-md-2 control-label"
+             for="state"> State</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="state"
+               type="text"
+               required
+               formControlName="state" />
+        <span class="help-block" *ngIf="(formGroup.get('state').touched || formGroup.get('state').dirty) && formGroup.get('state').errors">
+          <span *ngIf="formGroup.get('state').errors.required">
+            Please enter state
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('zipcode').touched || formGroup.get('zipcode').dirty) && !formGroup.get('zipcode').valid }">
+      <label class="col-md-2 control-label"
+             for="zipcode">Zipcode</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="zipcode"
+               type="text"
+               required
+               formControlName="zipcode" />
+        <span class="help-block" *ngIf="(formGroup.get('zipcode').touched || formGroup.get('zipcode').dirty) && formGroup.get('zipcode').errors">
+          <span *ngIf="formGroup.get('zipcode').errors.required">
+            Please enter zipcode
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('country').touched || formGroup.get('country').dirty) && !formGroup.get('country').valid }">
+      <label class="col-md-2 control-label"
+             for="country">Country</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="country"
+               type="text"
+               required
+               formControlName="country" />
+        <span class="help-block" *ngIf="(formGroup.get('country').touched || formGroup.get('country').dirty) && formGroup.get('country').errors">
+          <span *ngIf="formGroup.get('country').errors.required">
+            Please enter country
+          </span>
+        </span>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-2">
+        <span>
+          <button class="btn btn-primary"
+                  type="submit"
+                  [disabled]="!formGroup.valid">
+            Save
+          </button>
+          <button class="btn"
+                  type="button"
+                  [routerLink]="['/address']">
+            Cancel
+          </button>
+        </span>
+
+      </div>
+
+    </div>
+  </fieldset>
+</form>

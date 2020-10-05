@@ -43,6 +43,13 @@
 
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\app\account\UserInfo.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\address\address-form\address-form.component.spec.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\address\address-form\address-form.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\address\address.component.spec.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\address\address.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\address\address.service.spec.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\address\address.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\address\address.ts" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,28 @@
+<h1>Addresses</h1>
+
+<button *ngIf="loggedIn()" [routerLink]='["/address-add"]' class="btn-primary btn-primary-primary">Add Address </button>
+
+<table class="table" *ngIf="addresses && addresses.length">
+  <thead>
+    <tr>
+      <th>StreetAddress</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zipcode</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let address of addresses">
+      <td>{{address.streetAddress}}</td>
+      <td>{{address.city}}</td>
+      <td>{{address.state}}</td>
+      <td>{{address.zipcode}}</td>
+      <td>{{address.country}}</td>
+      <td>
+        <button [routerLink]='["/address-edit/" + address.id]'>Edit</button>
+        <button (click)="delete(address)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

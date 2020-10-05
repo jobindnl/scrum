@@ -1,4 +1,4 @@
-<h1>{{editMode ? 'Edit' : 'Add'}} CreditCard</h1>
+<h1>{{editMode ? 'Edit' : 'Add'}} Credit Card</h1>
 <form class="form-horizontal" novalidate
       (ngSubmit)="save()" [formGroup]="formGroup">
   <fieldset>
@@ -6,7 +6,7 @@
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('name').touched || formGroup.get('name').dirty) && !formGroup.get('name').valid }">
       <label class="col-md-2 control-label"
-             for="nombreId">Name</label>
+             for="name">Name</label>
 
       <div class="col-md-8">
         <input class="form-control"
@@ -63,7 +63,7 @@
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('expYear').touched || formGroup.get('expYear').dirty) && !formGroup.get('expYear').valid }">
       <label class="col-md-2 control-label"
-             for="expYear">expYear</label>
+             for="expYear">Expiration Year</label>
 
       <div class="col-md-8">
         <input class="form-control"
@@ -81,7 +81,7 @@
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('cvv').touched || formGroup.get('cvv').dirty) && !formGroup.get('cvv').valid }">
       <label class="col-md-2 control-label"
-             for="cvv">cvv</label>
+             for="cvv">Card Security Code</label>
 
       <div class="col-md-8">
         <input class="form-control"
