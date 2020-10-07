@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using angular.Web.Controllers;
 using angular.Web.Models;
+using angular.Web.Validations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,13 +17,50 @@ using reactiveFormWeb.Models;
 namespace reactiveFormWeb.Controllers
 {
     [Produces("application/json")]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/Address")]
     public class AddressController : CRUDController<Address, AddressFilter>
     {
-        public AddressController(ApplicationDbContext context, IConfiguration configuration) : base(context, configuration)
+        UserManager<ApplicationUser> _userManager;
+        public AddressController(ApplicationDbContext context, IConfiguration configuration, UserManager<ApplicationUser> userManager) : base(context, configuration)
         {
+            _userManager = userManager;
+        }
 
+        [HttpGet]
+        public override async Task<IEnumerable<Address>> Get([FromQuery] AddressFilter filter, [FromQuery] QueryOptions options)
+        {
+            
+            var currentUserId = User.FindFirst("Id").Value;
+            if (!string.IsNullOrEmpty(currentUserId))
+            {
+                if (options.Top <= 0 || options.Top > Limit)
+                    options.Top = Limit;
+
+                if (string.IsNullOrEmpty(options.OrderBy))
+                    options.OrderBy = DefaultOrderBy();
+
+                filter.UserId = int.Parse(currentUserId);
+                var query = ApplyFilter(filter);
+
+                if (!string.IsNullOrEmpty(options.OrderBy))
+                {
+                    Expression<Func<Address, object>> orderExpression = x => options.OrderBy;
+                    if (options.SortOrder > 0)
+                        query = query.OrderBy(orderExpression);
+                    else
+                        query = query.OrderByDescending(orderExpression);
+                }
+
+                query = query.Skip(Math.Max(0, options.Skip))
+                             .Take(Math.Max(0, Math.Min(Limit, options.Top)));
+
+                var result = await query.ToListAsync();
+
+                return result;
+
+            }
+            else return null;
         }
 
         [HttpPost]
@@ -32,6 +72,8 @@ namespace reactiveFormWeb.Controllers
             }
             var query = Context.Address.AsNoTracking();
             query = query.Where(x => x.UserId == newEntity.UserId);
+            var currentUser = await _userManager.GetUserAsync(this.User);
+            newEntity.UserId = currentUser.Id;
             var oldAddresses = await query.ToListAsync();
             var existingAddress = oldAddresses.FirstOrDefault(x => x.IsAlikeTo(
                 newEntity.StreetAddress,
@@ -50,9 +92,37 @@ namespace reactiveFormWeb.Controllers
             return CreatedAtAction("PostEntity", new { id = newEntity.Id }, newEntity);
         }
 
+        [HttpPut("{id}")]
+        public override async Task<IActionResult> PutEntity([FromRoute] int id, [FromBody] Address entity)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var currentUser = await _userManager.GetUserAsync(this.User);
+            entity.UserId = currentUser.Id;
+            Context.Entry(entity).State = EntityState.Modified;
+
+            try
+            {
+                await Context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!EntityExists(entity))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return CreatedAtAction("PutEntity", new { id = entity.Id }, entity);
+        }
         protected override IQueryable<Address> ApplyFilter(AddressFilter filter)
         {
-            var query = Repository.AsNoTracking();
+            var query = Repository.AsNoTracking().Where(x=> x.UserId == filter.UserId);
 
             if (filter.Id != null)
             {

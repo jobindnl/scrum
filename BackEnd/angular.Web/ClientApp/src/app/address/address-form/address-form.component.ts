@@ -50,7 +50,7 @@ export class AddressFormComponent implements OnInit {
       streeetAddress: address.streetAddress,
       city: address.city,
       state: address.state,
-      zipcode: address.zipcode,
+      zipcode: address.zipCode,
       country: address.country
     })
   }

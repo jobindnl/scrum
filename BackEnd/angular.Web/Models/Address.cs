@@ -4,6 +4,7 @@
     public class AddressFilter
     {
         public int? Id { get; set; }
+        public int UserId { get; set; }
         public string SearchString { get; set; }
     }
 
@@ -19,3 +20,4 @@
         public string Country { get; set; }
     }
 }
+

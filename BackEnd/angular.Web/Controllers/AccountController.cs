@@ -44,7 +44,7 @@ namespace angular.Web.Controllers
                     var result = await _userManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        return BuildToken(model);
+                        return BuildToken(user);
                     }
                     else
                     {
@@ -75,7 +75,8 @@ namespace angular.Web.Controllers
                     var result = await _signInManager.PasswordSignInAsync(userInfo.Email, userInfo.Password, isPersistent: false, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {
-                        return BuildToken(userInfo);
+                        var user = await _userManager.FindByNameAsync(userInfo.Email);
+                        return BuildToken(user);
                     }
                     else
                     {
@@ -95,11 +96,12 @@ namespace angular.Web.Controllers
             }
         }
 
-        private IActionResult BuildToken(UserInfo userInfo)
+        private IActionResult BuildToken(ApplicationUser user)
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.UniqueName, userInfo.Email),
+                new Claim("Id", user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 

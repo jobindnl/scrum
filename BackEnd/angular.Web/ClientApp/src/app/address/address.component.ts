@@ -28,6 +28,7 @@ export class AddressComponent implements OnInit {
     this.addressService.getAddresses()
       .subscribe(addressesfromapi => this.addresses = addressesfromapi,
         error => console.error(error));
+    //alert(this.addresses);
   }
 
   loggedIn() {

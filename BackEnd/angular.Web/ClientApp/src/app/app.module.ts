@@ -24,7 +24,9 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { CreditCardComponent } from './credit-card/credit-card.component';
 import { CreditCardFormComponent } from './credit-card/credit-card-form/credit-card-form.component'
 import { AddressComponent } from './address/address.component';
-import { AddressFormComponent } from './address/address-form/address-form.component'
+import { AddressFormComponent } from './address/address-form/address-form.component';
+import { UserProfileFormComponent } from './user-profile/user-profile-form/user-profile-form.component';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { AddressFormComponent } from './address/address-form/address-form.compon
     CounterComponent,
     FetchDataComponent,
     UserProfileComponent,
+    UserProfileFormComponent,
     BookComponent,
     AuthorComponent,
     GenreComponent,
@@ -63,6 +66,7 @@ import { AddressFormComponent } from './address/address-form/address-form.compon
       { path: 'genre-add', component: GenreFormComponent, canActivate: [AuthGuardService] },
       { path: 'author-add', component: AuthorFormComponent, canActivate: [AuthGuardService] },
       { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuardService] },
+      { path: 'user-profile-edit', component: UserProfileFormComponent, canActivate: [AuthGuardService] },
       { path: 'register-login', component: RegisterComponent },
       { path: 'credit-card', component: CreditCardComponent },
       { path: 'credit-card-add', component: CreditCardFormComponent },

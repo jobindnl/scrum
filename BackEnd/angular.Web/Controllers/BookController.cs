@@ -6,6 +6,7 @@ using angular.Web.Controllers;
 using angular.Web.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,11 +15,11 @@ using reactiveFormWeb.Models;
 namespace reactiveFormWeb.Controllers
 {
     [Produces("application/json")]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/Book")]
     public class BookController : CRUDController<Book, BookFilter>
     {
-        public BookController(ApplicationDbContext context, IConfiguration configuration) : base(context, configuration)
+        public BookController(ApplicationDbContext context, IConfiguration configuration, UserManager<ApplicationUser> userManager) : base(context, configuration)
         {
 
         }

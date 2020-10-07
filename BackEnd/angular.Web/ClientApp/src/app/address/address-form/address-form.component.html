@@ -61,18 +61,18 @@
     </div>
 
     <div class="form-group"
-         [ngClass]="{'has-error': (formGroup.get('zipcode').touched || formGroup.get('zipcode').dirty) && !formGroup.get('zipcode').valid }">
+         [ngClass]="{'has-error': (formGroup.get('zipCode').touched || formGroup.get('zipCode').dirty) && !formGroup.get('zipCode').valid }">
       <label class="col-md-2 control-label"
-             for="zipcode">Zipcode</label>
+             for="zipCode">Zipcode</label>
 
       <div class="col-md-8">
         <input class="form-control"
-               id="zipcode"
+               id="zipCode"
                type="text"
                required
-               formControlName="zipcode" />
-        <span class="help-block" *ngIf="(formGroup.get('zipcode').touched || formGroup.get('zipcode').dirty) && formGroup.get('zipcode').errors">
-          <span *ngIf="formGroup.get('zipcode').errors.required">
+               formControlName="zipCode" />
+        <span class="help-block" *ngIf="(formGroup.get('zipCode').touched || formGroup.get('zipCode').dirty) && formGroup.get('zipCode').errors">
+          <span *ngIf="formGroup.get('zipCode').errors.required">
             Please enter zipcode
           </span>
         </span>
