@@ -22,7 +22,7 @@
       <td>
         <button *ngIf="isAdmin()" [routerLink]='["/book-edit/" + book.id]'>Edit</button>
         <button *ngIf="isAdmin()" (click)="delete(book)">Delete</button>
-        <button *ngIf="loggedIn()" [routerLink]='["/book-edit/" + book.id]'>Add to Cart</button>
+        <button *ngIf="loggedIn() && !isAdmin()" [routerLink]='["/book-edit/" + book.id]'>Add to Cart</button>
       </td>
     </tr>
   </tbody>
