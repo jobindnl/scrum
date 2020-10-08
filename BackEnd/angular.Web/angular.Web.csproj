@@ -43,6 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\app\account\tokeninfo.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\account\UserInfo.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\address\address-form\address-form.component.spec.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\address\address-form\address-form.component.ts" />

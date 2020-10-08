@@ -40,6 +40,7 @@ namespace angular.Web
                 options.Password.RequireUppercase = false;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddRoles<IdentityRole<int>>()
             .AddDefaultTokenProviders();
 
 
@@ -60,6 +61,12 @@ namespace angular.Web
 
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdminClaim",
+                     policy => policy.RequireClaim("Admin"));
+            });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

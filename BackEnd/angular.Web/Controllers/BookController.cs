@@ -15,7 +15,6 @@ using reactiveFormWeb.Models;
 namespace reactiveFormWeb.Controllers
 {
     [Produces("application/json")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/Book")]
     public class BookController : CRUDController<Book, BookFilter>
     {

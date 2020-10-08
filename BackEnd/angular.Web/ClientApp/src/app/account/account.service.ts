@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUserInfo } from './UserInfo';
+import jwt_decode from 'jwt-decode';
+import { ITokenInfo } from './tokeninfo';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,28 @@ export class AccountService {
 
   getToken(): string {
     return localStorage.getItem("token");
+  }
+
+  getDecodedAccessToken(): ITokenInfo {
+    try {
+      var token = jwt_decode(this.getToken());
+      return <ITokenInfo>token
+    }
+    catch (Error) {
+      return null;
+    }
+  }
+
+  isAdmin(): boolean {
+    let token = this.getDecodedAccessToken()
+    if (token == null) {
+      return false;
+    }
+    if (token.Roles == null) {
+      return false;
+    }
+    let roles = <string[]>JSON.parse(token.Roles);
+    return roles.find(x => x == "Admin") != null;
   }
 
   refreshToken(): string {

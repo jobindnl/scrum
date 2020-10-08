@@ -1,8 +1,11 @@
 ﻿using angular.Web.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using reactiveFormWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -21,15 +24,18 @@ namespace angular.Web.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
+        private ApplicationDbContext _context { get; set; }
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             this._configuration = configuration;
+            _context = context;
         }
 
         [Route("Create")]
@@ -44,7 +50,8 @@ namespace angular.Web.Controllers
                     var result = await _userManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        return BuildToken(user);
+                        var roles = await _userManager.GetRolesAsync(user);
+                        return BuildToken(user, roles);
                     }
                     else
                     {
@@ -76,7 +83,8 @@ namespace angular.Web.Controllers
                     if (result.Succeeded)
                     {
                         var user = await _userManager.FindByNameAsync(userInfo.Email);
-                        return BuildToken(user);
+                        var roles = await _userManager.GetRolesAsync(user);
+                        return BuildToken(user, roles);
                     }
                     else
                     {
@@ -96,11 +104,13 @@ namespace angular.Web.Controllers
             }
         }
 
-        private IActionResult BuildToken(ApplicationUser user)
+        private IActionResult BuildToken(ApplicationUser user, IList<string> roles)
         {
-            var claims = new[]
+            var rolesStr = JsonConvert.SerializeObject(roles);
+            var claims = new List<Claim>
             {
                 new Claim("Id", user.Id.ToString()),
+                new Claim("Roles", rolesStr),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
@@ -120,7 +130,7 @@ namespace angular.Web.Controllers
             return Ok(new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(token),
-                expiration = expiration
+                expiration
             });
 
         }
