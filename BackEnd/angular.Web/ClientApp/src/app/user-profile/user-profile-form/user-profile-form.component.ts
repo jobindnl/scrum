@@ -29,7 +29,8 @@ export class UserProfileFormComponent implements OnInit {
       name: '',
       nickName: '',
       email: '',
-      homeAddressId: 0
+      homeAddressId: 0,
+      defaultCreditCardId: 0
     });
 
     this.activatedRoute.params.subscribe(params => {
@@ -47,7 +48,8 @@ export class UserProfileFormComponent implements OnInit {
       name: userProfile.name,
       nickName: userProfile.nickName,
       email: userProfile.email,
-      homeAddressId: userProfile.homeAddressId
+      homeAddressId: userProfile.homeAddressId,
+      defaultCreditCardId: userProfile.defaultCreditCardId
     })
   }
 

@@ -40,6 +40,7 @@ namespace reactiveFormWeb.Controllers
                 var entity = await _context.ApplicationUser
                     .Include(x=> x.ShippingAddresses)
                     .Include(x => x.HomeAddress)
+                    .Include(x=> x.DefaultCreditCard)
                     .Include(x => x.CreditCards)
                     .SingleOrDefaultAsync(m => m.Id == int.Parse(currentUserId)
                     );
@@ -69,8 +70,8 @@ namespace reactiveFormWeb.Controllers
                     oldentity.NickName = newEntity.NickName;
                     oldentity.Email = newEntity.Email;
                     oldentity.HomeAddressId = newEntity.HomeAddressId;
+                    oldentity.DefaultCreditCardId = newEntity.DefaultCreditCardId;
                 }
-
                 try
                 {
                     await _context.SaveChangesAsync();

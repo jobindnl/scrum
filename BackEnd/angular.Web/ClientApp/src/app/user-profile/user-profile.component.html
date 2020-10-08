@@ -27,13 +27,13 @@
              for="email">Email</label>
       <label class="col-md-2 control-label"
              for="email" *ngIf="userProfile">{{userProfile.email}}</label>
-      
+
     </div>
 
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('homeAddressId').touched || formGroup.get('homeAddressId').dirty) && !formGroup.get('homeAddressId').valid }">
       <label class="col-md-2 control-label"
-             for="homeAddressId">HomeAddress</label>
+             for="homeAddressId">Home Address</label>
       <label class="col-md-8 control-label"
              for="homeAddressId" *ngIf="userProfile && userProfile.homeAddress">
         {{userProfile.homeAddress.streetAddress}}
@@ -45,9 +45,21 @@
 
     </div>
 
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('defaultCreditCardId').touched || formGroup.get('defaultCreditCardId').dirty) && !formGroup.get('defaultCreditCardId').valid }">
+      <label class="col-md-2 control-label"
+             for="defaultCreditCardId">Default Credit Card</label>
+      <label class="col-md-8 control-label"
+             for="defaultCreditCardId" *ngIf="userProfile && userProfile.defaultCreditCard">
+        {{userProfile.defaultCreditCard.number}}
+        Exp: {{userProfile.defaultCreditCard.expMonth}}/{{userProfile.defaultCreditCard.expYear}}
+      </label>
+
+    </div>
+
 
     <div class="form-group">
-      <a [routerLink]="['/address']" >Addresses</a>
+      <a [routerLink]="['/address']">Shipping Addresses</a>
       <p ng-bind-html="this.body|lineBreak"></p>
       <a [routerLink]="['/credit-card']">Credit Cards</a>
     </div>

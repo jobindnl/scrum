@@ -72,6 +72,7 @@ namespace reactiveFormWeb.Controllers
             var currentUserId = User.FindFirst("Id").Value;
             if (!string.IsNullOrEmpty(currentUserId))
             {
+                newEntity.UserId = int.Parse(currentUserId);
                 var query = Context.CreditCard.AsNoTracking();
                 query = query.Where(x => x.UserId == newEntity.UserId);
                 var oldCreditCardes = await query.ToListAsync();
@@ -104,26 +105,32 @@ namespace reactiveFormWeb.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var currentUser = await _userManager.GetUserAsync(this.User);
-            entity.UserId = currentUser.Id;
-            Context.Entry(entity).State = EntityState.Modified;
+            var currentUserId = User.FindFirst("Id").Value;
+            if (!string.IsNullOrEmpty(currentUserId))
+            {
+                entity.UserId = int.Parse(currentUserId);
+                Context.Entry(entity).State = EntityState.Modified;
 
-            try
-            {
-                await Context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EntityExists(entity))
+                try
                 {
-                    return NotFound();
+                    await Context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!EntityExists(entity))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
+                return CreatedAtAction("PutEntity", new { id = entity.Id }, entity);
             }
-            return CreatedAtAction("PutEntity", new { id = entity.Id }, entity);
+            else
+                return NotFound("Invalid user");
+
         }
 
         protected override IQueryable<CreditCard> ApplyFilter(CreditCardFilter filter)

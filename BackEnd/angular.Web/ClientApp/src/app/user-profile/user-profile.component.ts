@@ -25,6 +25,7 @@ export class UserProfileComponent implements OnInit {
       nickName: '',
       email: '',
       homeAddressId: '',
+      defaultCreditCardId: ''
     });
     this.userProfileId = 1;
     this.userProfileService.getUserProfile(this.userProfileId.toString())
@@ -32,13 +33,14 @@ export class UserProfileComponent implements OnInit {
         error => console.error(error));
   }
 
-  loadData(userProfile: IUserProfile) {
-    this.userProfile = userProfile;
+  loadData(userProfilefromapi: IUserProfile) {
+    this.userProfile = userProfilefromapi;
     this.formGroup.patchValue({
-      name: userProfile.name,
-      nickName: userProfile.nickName,
-      email: userProfile.email,
-      homeAddressId: userProfile.homeAddressId,
+      name: userProfilefromapi.name,
+      nickName: userProfilefromapi.nickName,
+      email: userProfilefromapi.email,
+      homeAddressId: userProfilefromapi.homeAddressId,
+      defaultCreditCardId: userProfilefromapi.defaultCreditCardId
     });
   }
 

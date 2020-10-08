@@ -9,6 +9,8 @@ export interface IUserProfile {
   password: string;
   homeAddressId: number;
   homeAddress: IAddress;
+  defaultCreditCardId: number;
+  defaultCreditCard: ICreditCard;
   shippingAddresses: IAddress[];
   creditCards: ICreditCard[];
 }

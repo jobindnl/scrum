@@ -18,6 +18,10 @@ namespace reactiveFormWeb.DataAccess.Mapping
             entityBuilder.HasOne(x => x.HomeAddress)
                 .WithMany()
                 .HasForeignKey(x => x.HomeAddressId);
+
+            entityBuilder.HasOne(x => x.DefaultCreditCard)
+               .WithMany()
+               .HasForeignKey(x => x.DefaultCreditCardId);
         }
     }
 }
