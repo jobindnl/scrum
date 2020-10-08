@@ -69,28 +69,32 @@ namespace reactiveFormWeb.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var currentUser = await _userManager.GetUserAsync(this.User);
-            newEntity.UserId = currentUser.Id;
-            var query = Context.CreditCard.AsNoTracking();
-            query = query.Where(x => x.UserId == newEntity.UserId);
-            var oldCreditCardes = await query.ToListAsync();
-            var existingCreditCard = oldCreditCardes.FirstOrDefault(x => x.IsAlikeTo(
-                newEntity.Name,
-                newEntity.Number,
-                newEntity.ExpMonth,
-                newEntity.ExpYear,
-                newEntity.CVV));
-
-            if (existingCreditCard != null)
-                newEntity = existingCreditCard;
-
-            else
+            var currentUserId = User.FindFirst("Id").Value;
+            if (!string.IsNullOrEmpty(currentUserId))
             {
-                Repository.Add(newEntity);
-                await Context.SaveChangesAsync();
+                var query = Context.CreditCard.AsNoTracking();
+                query = query.Where(x => x.UserId == newEntity.UserId);
+                var oldCreditCardes = await query.ToListAsync();
+                var existingCreditCard = oldCreditCardes.FirstOrDefault(x => x.IsAlikeTo(
+                    newEntity.Name,
+                    newEntity.Number,
+                    newEntity.ExpMonth,
+                    newEntity.ExpYear,
+                    newEntity.CVV));
+
+                if (existingCreditCard != null)
+                    newEntity = existingCreditCard;
+
+                else
+                {
+                    Repository.Add(newEntity);
+                    await Context.SaveChangesAsync();
+                }
+                //Something like first elemnt by generic
+                return CreatedAtAction("PostEntity", new { id = newEntity.Id }, newEntity);
             }
-            //Something like first elemnt by generic
-            return CreatedAtAction("PostEntity", new { id = newEntity.Id }, newEntity);
+            else
+                return NotFound("Invalid user");
         }
 
         [HttpPut("{id}")]

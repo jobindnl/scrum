@@ -25,6 +25,10 @@ export class AccountService {
     return localStorage.getItem("token");
   }
 
+  refreshToken(): string {
+    return localStorage.getItem("token");
+  }
+
   getExpirationToken(): string {
     return localStorage.getItem("tokenExpiration");
   }

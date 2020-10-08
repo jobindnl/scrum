@@ -47,10 +47,9 @@
 
 
     <div class="form-group">
-      <a [routerLink]="['/address']" (click)='collapse()'>Addresses</a>
-      <p ng-bind-html="demo.body|lineBreak"></p>
-      <a [routerLink]="['/credit-card']" (click)='collapse()'>Credit Cards</a>
-
+      <a [routerLink]="['/address']" >Addresses</a>
+      <p ng-bind-html="this.body|lineBreak"></p>
+      <a [routerLink]="['/credit-card']">Credit Cards</a>
     </div>
   </fieldset>
 </form>

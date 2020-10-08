@@ -71,25 +71,31 @@ namespace reactiveFormWeb.Controllers
                 return BadRequest(ModelState);
             }
             var query = Context.Address.AsNoTracking();
-            query = query.Where(x => x.UserId == newEntity.UserId);
-            var currentUser = await _userManager.GetUserAsync(this.User);
-            newEntity.UserId = currentUser.Id;
-            var oldAddresses = await query.ToListAsync();
-            var existingAddress = oldAddresses.FirstOrDefault(x => x.IsAlikeTo(
-                newEntity.StreetAddress,
-                newEntity.City,
-                newEntity.State,
-                newEntity.ZipCode,
-                newEntity.Country));
-            if (existingAddress != null)
-                newEntity = existingAddress;
-            else
+            var currentUserId = User.FindFirst("Id").Value;
+            if (!string.IsNullOrEmpty(currentUserId))
             {
-                Repository.Add(newEntity);
-                await Context.SaveChangesAsync();
+                newEntity.UserId = int.Parse(currentUserId);
+                query = query.Where(x => x.UserId == newEntity.UserId);
+                var oldAddresses = await query.ToListAsync();
+                var existingAddress = oldAddresses.FirstOrDefault(x => x.IsAlikeTo(
+                    newEntity.StreetAddress,
+                    newEntity.City,
+                    newEntity.State,
+                    newEntity.ZipCode,
+                    newEntity.Country));
+                if (existingAddress != null)
+                    newEntity = existingAddress;
+                else
+                {
+                    Repository.Add(newEntity);
+                    await Context.SaveChangesAsync();
+                }
+                //Something like first elemnt by generic
+                return CreatedAtAction("PostEntity", new { id = newEntity.Id }, newEntity);
             }
-            //Something like first elemnt by generic
-            return CreatedAtAction("PostEntity", new { id = newEntity.Id }, newEntity);
+            else
+                return NotFound("Invalid user");
+
         }
 
         [HttpPut("{id}")]
@@ -99,26 +105,31 @@ namespace reactiveFormWeb.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var currentUser = await _userManager.GetUserAsync(this.User);
-            entity.UserId = currentUser.Id;
-            Context.Entry(entity).State = EntityState.Modified;
+            var currentUserId = User.FindFirst("Id").Value;
+            if (!string.IsNullOrEmpty(currentUserId))
+            {
+                entity.UserId = int.Parse(currentUserId);
+                Context.Entry(entity).State = EntityState.Modified;
 
-            try
-            {
-                await Context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EntityExists(entity))
+                try
                 {
-                    return NotFound();
+                    await Context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!EntityExists(entity))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
+                return CreatedAtAction("PutEntity", new { id = entity.Id }, entity);
             }
-            return CreatedAtAction("PutEntity", new { id = entity.Id }, entity);
+            else
+                return NotFound("Invalid user");
         }
         protected override IQueryable<Address> ApplyFilter(AddressFilter filter)
         {
