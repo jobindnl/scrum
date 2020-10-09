@@ -21,6 +21,7 @@ namespace angular.Web
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            //This is a jennifer's change
         }
 
         public IConfiguration Configuration { get; }
