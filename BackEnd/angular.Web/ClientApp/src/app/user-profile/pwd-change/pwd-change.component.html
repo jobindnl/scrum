@@ -1,0 +1,41 @@
+<form [formGroup]="formGroup">
+  <div class="form-group">
+    <label>Old Password</label>
+    <input formControlName="oldPwd"
+           id="oldPwd"
+           type="password"
+           class="form-control" />
+    <div class="alert alert-danger" *ngIf="formGroup.get('oldPwd').touched && formGroup.get('oldPwd').invalid">
+      <div *ngIf="formGroup.get('oldPwd').errors.required">Old Password is required.</div>
+      <div *ngIf="formGroup.get('oldPwd').errors.shouldBe1234">Old Password is not valid.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>New Password</label>
+    <input formControlName="newPwd"
+           id="newPwd"
+           type="password"
+           class="form-control" />
+    <div class="alert alert-danger" *ngIf="formGroup.get('newPwd').touched && formGroup.get('newPwd').invalid">
+      <div *ngIf="formGroup.get('newPwd').errors.required">New Password is required.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Confirm Password</label>
+    <input formControlName="confirmPwd"
+           id="confirmPwd"
+           type="password"
+           class="form-control" />
+    <div class="alert alert-danger" *ngIf="(formGroup.get('confirmPwd').touched || formGroup.get('confirmPwd').dirty) && formGroup.get('confirmPwd').errors">
+      <div *ngIf="confirmPwd.errors.required">Confirm Password is required.</div>
+    </div>
+    <div class="alert alert-danger" *ngIf="formGroup.get('confirmPwd').valid && formGroup.invalid && formGroup.errors.pwdsDontMatch">
+      Passwords do not match.
+    </div>
+  </div>
+
+  <button class="btn btn-primary">Change Password</button>
+
+</form>

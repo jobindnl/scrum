@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
 
   handleError(error) {
     if (error && error.error) {
-      alert(error.error[""]);
+      alert(error.error["errors"]);
     }
   }
 

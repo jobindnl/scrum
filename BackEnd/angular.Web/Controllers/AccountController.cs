@@ -55,7 +55,8 @@ namespace angular.Web.Controllers
                     }
                     else
                     {
-                        return BadRequest(string.Join(",", result.Errors.Select(x => x.Code).ToArray()));
+                        var payload = new { errors = result.Errors.Select(x => x.Description).ToArray() };
+                        return BadRequest(payload);
                     }
                 }
                 catch(Exception ex)
@@ -88,7 +89,7 @@ namespace angular.Web.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                        ModelState.AddModelError("errors", "Invalid user or password.");
                         return BadRequest(ModelState);
                     }
                 }
