@@ -53,6 +53,7 @@
     <TypeScriptCompile Remove="ClientApp\src\app\address\address.service.spec.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\address\address.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\address\address.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\user-profile\pwd-change\pwdchange.ts" />
   </ItemGroup>
 
   <ItemGroup>

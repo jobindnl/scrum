@@ -1,6 +1,7 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 export class OldPwdValidators {
+
   static shouldBe1234(control: AbstractControl): Promise<ValidationErrors | null> {
     return new Promise((resolve, reject) => {
       if (control.value !== '1234')
@@ -18,4 +19,15 @@ export class OldPwdValidators {
     }
     return null;
   }
+
+  static samePwds(control: AbstractControl): Promise<ValidationErrors | null> {
+    return new Promise((resolve, reject) => {
+      let currentpassword2 = control.parent.get('currentpassword');
+      if (currentpassword2.value == control.value)
+        resolve({ samePwds: true });
+      else
+        resolve(null);
+    });
+  }
+
 }

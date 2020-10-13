@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AccountService } from '../../account/account.service';
 import { OldPwdValidators } from './old-pwd.validator';
+import { IPwdChange } from './pwdchange';
 
 @Component({
   selector: 'app-pwd-change',
@@ -14,13 +16,14 @@ export class PwdChangeComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private accountService: AccountService
   ) { }
 
   ngOnInit() {
     this.formGroup = this.fb.group({
-      oldPwd: ['', Validators.required, OldPwdValidators.shouldBe1234],
-      newPwd: ['', Validators.required],
+      currentpassword: ['', Validators.required],
+      newPwd: ['', Validators.required, OldPwdValidators.samePwds],
       confirmPwd: ['', Validators.required]
     }, {
       validator: OldPwdValidators.matchPwds
@@ -28,16 +31,25 @@ export class PwdChangeComponent implements OnInit {
 
   }
 
-  get oldPwd() {
-    return this.formGroup.get('oldPwd');
+  save() {
+    let pwdChange: IPwdChange = Object.assign({}, this.formGroup.value);
+    console.table(pwdChange);
+
+    this.accountService.changePassword(pwdChange)
+      .subscribe(userProfile => this.onSaveSuccess(),
+        error => this.handleError(error));
   }
 
-  get newPwd() {
-    return this.formGroup.get('newPwd');
+  onSaveSuccess() {
+    alert("Password changed sucssesfully");
+    this.router.navigate(["/user-profile"]);
   }
 
-  get confirmPwd() {
-    return this.formGroup.get('confirmPwd');
+  handleError(error) {
+    if (error && error.error) {
+      alert(error.error["errors"]);
+    }
   }
+
 
 }
