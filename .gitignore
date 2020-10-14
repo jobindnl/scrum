@@ -45,3 +45,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/BackEnd/.vs/Angular/v16/.suo
+/BackEnd/.vs/Angular/v16/.suo
