@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IUserInfo } from './UserInfo';
 import jwt_decode from 'jwt-decode';
 import { ITokenInfo } from './tokeninfo';
+import { IPwdChange } from '../user-profile/pwd-change/pwdchange';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class AccountService {
 
   create(userInfo: IUserInfo): Observable<any> {
     return this.http.post<any>(this.apiURL + "/Create", userInfo);
+  }
+
+  changePassword(pwdchange: IPwdChange): Observable<any> {
+    return this.http.post<any>(this.apiURL + "/ChangePassword", pwdchange);
   }
 
   login(userInfo: IUserInfo): Observable<any> {

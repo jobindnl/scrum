@@ -38,7 +38,7 @@ export class UserProfileFormComponent implements OnInit {
       this.userProfileId = 1;
       this.userProfileService.getUserProfile(this.userProfileId.toString())
         .subscribe(userProfileFromApi => this.loadForm(userProfileFromApi),
-          error => console.error(error));
+          error => alert(error));
     });
   }
 
@@ -61,7 +61,7 @@ export class UserProfileFormComponent implements OnInit {
     userProfile.id = x;
     this.userProfileService.updateUserProfile(userProfile)
       .subscribe(userProfile => this.onSaveSuccess(),
-        error => console.error(error));
+        error => alert(error));
   }
 
   onSaveSuccess() {

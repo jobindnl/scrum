@@ -1,4 +1,6 @@
 ﻿using angular.Web.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
@@ -55,10 +57,48 @@ namespace angular.Web.Controllers
                     }
                     else
                     {
-                        return BadRequest(string.Join(",", result.Errors.Select(x => x.Code).ToArray()));
+                        var payload = new { errors = result.Errors.Select(x => x.Description).ToArray() };
+                        return BadRequest(payload);
                     }
                 }
                 catch(Exception ex)
+                {
+                    var e = ex;
+                    throw;
+                }
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+
+        }
+
+        [Route("ChangePassword")]
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> ChangePassword([FromBody] PwdChange model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var currentUserId = User.FindFirst("Id").Value;
+                    var user = await _userManager.FindByIdAsync(currentUserId);
+                    var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPwd);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.RefreshSignInAsync(user);
+                        var roles = await _userManager.GetRolesAsync(user);
+                        return BuildToken(user, roles);
+                    }
+                    else
+                    {
+                        var payload = new { errors = result.Errors.Select(x => x.Description).ToArray() };
+                        return BadRequest(payload);
+                    }
+                }
+                catch (Exception ex)
                 {
                     var e = ex;
                     throw;
@@ -88,7 +128,7 @@ namespace angular.Web.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                        ModelState.AddModelError("errors", "Invalid user or password.");
                         return BadRequest(ModelState);
                     }
                 }
