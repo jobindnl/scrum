@@ -1,0 +1,23 @@
+<h1>Credit Cards</h1>
+
+<button *ngIf="loggedIn()" [routerLink]='["/wishlist-add"]' class="btn-primary btn-primary-primary">Add wishlist </button>
+
+<table class="table" *ngIf="wishlists && wishlists.length">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let wishlist of wishlists">
+      <td>{{wishlist.name}}</td>
+      <td>
+        <button [routerLink]='["/credit-card-edit/" + wishlist.id]'>Edit</button>
+        <button (click)="delete(wishlist)">Delete</button>
+        <button [routerLink]='["/view-wishlist-detail/" + wishlist.id]'>View details</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button [routerLink]='["/user-profile"]' class="btn-primary btn-primary-primary">Back to User Profile </button>

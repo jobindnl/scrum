@@ -27,6 +27,9 @@ import { AddressComponent } from './address/address.component';
 import { AddressFormComponent } from './address/address-form/address-form.component';
 import { UserProfileFormComponent } from './user-profile/user-profile-form/user-profile-form.component';
 import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { WishlistService } from './wishlist/wishlist.service';
+import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.component';
 
 
 @NgModule({
@@ -49,7 +52,9 @@ import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.compone
     CreditCardFormComponent,
     AddressComponent,
     AddressFormComponent,
-    PwdChangeComponent
+    PwdChangeComponent,
+    WishlistComponent,
+    WishlistFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -77,11 +82,14 @@ import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.compone
       { path: 'address-add', component: AddressFormComponent },
       { path: 'address-edit/:id', component: AddressFormComponent },
       { path: 'pwd-change', component: PwdChangeComponent },
+      { path: 'wishlist', component: WishlistComponent },
+      { path: 'wishlist-add', component: WishlistFormComponent },
     ])
   ],
   providers: [BookService,
     AuthGuardService,
     AccountService,
+    WishlistService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

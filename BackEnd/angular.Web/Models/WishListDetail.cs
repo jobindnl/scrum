@@ -1,5 +1,14 @@
 ﻿namespace angular.Web.Models
 {
+    public class WishListDetailFilter
+    {
+        public int? Id { get; set; }
+        public int WishListId { get; set; }
+
+        public string SearchString { get; set; }
+
+    }
+
     public class WishListDetail : EntityBase
     {
         public int Id { get; set; }
