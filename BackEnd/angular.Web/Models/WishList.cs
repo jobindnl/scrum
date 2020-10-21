@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace angular.Web.Models
 {
-
     public class WishList : EntityBase
     {
         public int Id { get; set; }
