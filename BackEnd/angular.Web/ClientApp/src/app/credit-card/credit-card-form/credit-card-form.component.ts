@@ -22,7 +22,8 @@ export class CreditCardFormComponent implements OnInit {
   creditCardId: number;
 
 
-  ngOnInit() {
+  ngOnInit()
+  {
     this.formGroup = this.fb.group({
       name: '',
       number: 0,

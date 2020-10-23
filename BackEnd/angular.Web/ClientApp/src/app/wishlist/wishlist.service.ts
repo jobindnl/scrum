@@ -16,8 +16,8 @@ export class WishlistService {
     return this.http.get<Iwishlist[]>(this.apiURL);
   }
 
-  getWishlists(Id: string): Observable<Iwishlist> {
-    return this.http.get<Iwishlist>(this.apiURL + '/' + Id);
+  getWishlists(wishlistId: string): Observable<Iwishlist> {
+    return this.http.get<Iwishlist>(this.apiURL + '/' + wishlistId);
   }
 
   getWishlistID(Id: string): Observable<Iwishlist> {
