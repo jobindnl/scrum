@@ -30,6 +30,7 @@ import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.compone
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { WishlistService } from './wishlist/wishlist.service';
 import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.component';
+import { WishlistDetailsComponent } from './wishlist/wishlist-details/wishlist-details.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.co
     AddressFormComponent,
     PwdChangeComponent,
     WishlistComponent,
-    WishlistFormComponent
+    WishlistFormComponent,
+    WishlistDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -85,6 +87,7 @@ import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.co
       { path: 'wishlist', component: WishlistComponent },
       { path: 'wishlist-add', component: WishlistFormComponent },
       { path: 'wishlist-edit/:id', component: WishlistFormComponent },
+      { path: 'wishlist-details', component: WishlistDetailsComponent },
     ])
   ],
   providers: [BookService,
