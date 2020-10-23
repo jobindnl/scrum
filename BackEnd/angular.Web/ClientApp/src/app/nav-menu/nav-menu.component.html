@@ -25,6 +25,11 @@
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/author']">Authors</a>
           </li>
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/wishlist']">Wishlist</a>
+          </li>
+
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/genre']">Genres</a>
           </li>
@@ -35,7 +40,7 @@
             <a [routerLink]='["/register-login"]' (click)='collapse()'>Register / Login</a>
           </li>
           <li *ngIf="loggedIn()" [routerLinkActive]='["link-active"]' style="padding: .5rem 1rem;">
-              <a [routerLink]="" (click)='logout()'>Logout</a>
+            <a [routerLink]="" (click)='logout()'>Logout</a>
           </li>
         </ul>
       </div>

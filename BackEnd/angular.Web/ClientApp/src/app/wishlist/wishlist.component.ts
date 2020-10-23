@@ -28,4 +28,11 @@ export class WishlistComponent implements OnInit {
     return this.accountService.loggedIn();
   }
 
+  delete(wishlist: Iwishlist) {
+    this.wishlistService.deleteWishlist(wishlist.id.toString())
+      .subscribe(wishlist => this.loadData(),
+        error => console.error(error));
+  }
+
+
 }

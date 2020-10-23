@@ -16,6 +16,10 @@ export class WishlistService {
     return this.http.get<Iwishlist[]>(this.apiURL);
   }
 
+  getWishlists(Id: string): Observable<Iwishlist> {
+    return this.http.get<Iwishlist>(this.apiURL + '/' + Id);
+  }
+
   getWishlistID(Id: string): Observable<Iwishlist> {
     return this.http.get<Iwishlist>(this.apiURL + '/' + Id);
   }
@@ -24,8 +28,12 @@ export class WishlistService {
     return this.http.post<Iwishlist>(this.apiURL, wishlist);
   }
 
-  deleteBook(Id: string): Observable<Iwishlist> {
+  deleteWishlist(Id: string): Observable<Iwishlist> {
     return this.http.delete<Iwishlist>(this.apiURL + '/' + Id);
+  }
+
+  updateWishlist(wishlist: Iwishlist): Observable<Iwishlist> {
+    return this.http.put<Iwishlist>(this.apiURL + '/' + wishlist.id.toString(), wishlist);
   }
 
 }

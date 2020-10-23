@@ -84,6 +84,7 @@ import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.co
       { path: 'pwd-change', component: PwdChangeComponent },
       { path: 'wishlist', component: WishlistComponent },
       { path: 'wishlist-add', component: WishlistFormComponent },
+      { path: 'wishlist-edit/:id', component: WishlistFormComponent },
     ])
   ],
   providers: [BookService,
