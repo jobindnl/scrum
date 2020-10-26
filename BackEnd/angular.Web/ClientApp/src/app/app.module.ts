@@ -31,6 +31,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { WishlistService } from './wishlist/wishlist.service';
 import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.component';
 import { WishlistDetailsComponent } from './wishlist/wishlist-details/wishlist-details.component';
+import { LogInterceptorService } from './services/log-interceptor.service';
 
 
 @NgModule({
@@ -97,6 +98,11 @@ import { WishlistDetailsComponent } from './wishlist/wishlist-details/wishlist-d
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
+      multi: true
+    },
+     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LogInterceptorService,
       multi: true
     }
   ],
