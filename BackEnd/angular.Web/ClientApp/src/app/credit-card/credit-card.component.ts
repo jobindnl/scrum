@@ -21,17 +21,22 @@ export class CreditCardComponent implements OnInit {
   delete(creditCard: ICreditCard) {
     this.creditCardService.deleteCreditCard(creditCard.id.toString())
       .subscribe(creditCard => this.loadData(),
-      error => console.error(error));
+        error => this.handleError(error));
   }
 
   loadData() {
     this.creditCardService.getCreditCards()
       .subscribe(creditCardsfromapi => this.creditCards = creditCardsfromapi,
-        error => console.error(error));
+        error => this.handleError(error));
   }
 
   loggedIn() {
     return this.accountService.loggedIn();
   }
 
+  handleError(error) {
+    if (error && error.error) {
+      alert(error.error["errors"]);
+    }
+  }
 }

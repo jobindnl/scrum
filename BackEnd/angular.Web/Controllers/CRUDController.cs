@@ -115,7 +115,7 @@ namespace angular.Web.Controllers
 
         // DELETE: api/Book/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEntity([FromRoute] int id)
+        public virtual async Task<IActionResult> DeleteEntity([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {

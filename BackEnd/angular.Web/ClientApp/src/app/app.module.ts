@@ -26,7 +26,10 @@ import { CreditCardFormComponent } from './credit-card/credit-card-form/credit-c
 import { AddressComponent } from './address/address.component';
 import { AddressFormComponent } from './address/address-form/address-form.component';
 import { UserProfileFormComponent } from './user-profile/user-profile-form/user-profile-form.component';
-import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.component';
+import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
+import { EmailConfirmSentComponent } from './account/email-confirm-sent/email-confirm-sent.component';
+import { PwdChangeComponent } from './account/pwd-change/pwd-change.component';
+import { VerifyTokenResetPasswordComponent } from './account/verify-token-reset-password/verify-token-reset-password.component';
 
 
 @NgModule({
@@ -49,7 +52,10 @@ import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.compone
     CreditCardFormComponent,
     AddressComponent,
     AddressFormComponent,
-    PwdChangeComponent
+    PwdChangeComponent,
+    ForgotPasswordComponent,
+    EmailConfirmSentComponent,
+    VerifyTokenResetPasswordComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -77,6 +83,9 @@ import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.compone
       { path: 'address-add', component: AddressFormComponent },
       { path: 'address-edit/:id', component: AddressFormComponent },
       { path: 'pwd-change', component: PwdChangeComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'email-confirm-sent', component: EmailConfirmSentComponent },
+      { path: 'verify-token-reset-password', component: VerifyTokenResetPasswordComponent },
     ])
   ],
   providers: [BookService,

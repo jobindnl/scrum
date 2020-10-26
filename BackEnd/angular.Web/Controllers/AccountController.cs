@@ -1,10 +1,12 @@
 ﻿using angular.Web.Models;
+using angular.Web.Models.DTO;
+using EmailService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using reactiveFormWeb.Models;
@@ -15,6 +17,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace angular.Web.Controllers
 {
@@ -26,18 +29,23 @@ namespace angular.Web.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
+        private readonly IEmailSender _emailSender;
+
         private ApplicationDbContext _context { get; set; }
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IConfiguration configuration,
-            ApplicationDbContext context)
+            ApplicationDbContext context,
+            IEmailSender emailSender
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             this._configuration = configuration;
             _context = context;
+            _emailSender = emailSender;
         }
 
         [Route("Create")]
@@ -141,6 +149,65 @@ namespace angular.Web.Controllers
             else
             {
                 return BadRequest(ModelState);
+            }
+        }
+
+        [Route("ForgotPassword")]
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPassword forgotPasswordModel)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = await _userManager.FindByEmailAsync(forgotPasswordModel.Email);
+            if (user == null) {
+                var payload = new { errors = new string[] { "This email does not belong to a user" } };
+                return Conflict(payload);
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var callback = $"{Request.Scheme}://{Request.Host}/verify-token-reset-password?token={token}&email={user.Email}";
+            var message = new Message(new string[] { forgotPasswordModel.Email }, "Reset password token", callback, null);
+            await _emailSender.SendEmailAsync(message);
+            return NoContent();
+
+        }
+
+        [Route("verify-token-reset-password")]
+        [HttpPost]
+        public async Task<IActionResult> VerifyTokenAndResetPassword([FromBody] ForgotPasswordToken ForgotPasswordToken)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = await _userManager.FindByEmailAsync(ForgotPasswordToken.Email);
+            if (user == null)
+            {
+                var payload = new { errors = new string[] { "This email does not belong to a user" } };
+                return Conflict(payload);
+            }
+            var code = ForgotPasswordToken.Token.Replace(" ", "+");
+            var identityResult = await _userManager.ResetPasswordAsync(user, code, ForgotPasswordToken.newPwd);
+            if (identityResult.Succeeded)
+            {
+                var result = await _signInManager.PasswordSignInAsync(user.Email, ForgotPasswordToken.newPwd, isPersistent: false, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    var roles = await _userManager.GetRolesAsync(user);
+                    return BuildToken(user, roles);
+                }
+                else
+                {
+                    ModelState.AddModelError("errors", "Invalid user or password.");
+                    return BadRequest(ModelState);
+                }
+            }
+            else
+            {
+                var payload = new { errors = identityResult.Errors.Select(x => x.Description).ToArray() };
+                return Conflict(payload);
             }
         }
 

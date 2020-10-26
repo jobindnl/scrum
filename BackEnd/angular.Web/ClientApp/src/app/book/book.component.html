@@ -10,6 +10,7 @@
       <th>Description</th>
       <th>Publishing Info</th>
       <th>Author Id</th>
+      <th>Genre Id</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,7 @@
       <td>{{book.description}}</td>
       <td>{{book.publishingInfo}}</td>
       <td>{{book.authorId}}</td>
+      <td>{{book.genreId}}</td>
       <td>
         <button *ngIf="isAdmin()" [routerLink]='["/book-edit/" + book.id]'>Edit</button>
         <button *ngIf="isAdmin()" (click)="delete(book)">Delete</button>

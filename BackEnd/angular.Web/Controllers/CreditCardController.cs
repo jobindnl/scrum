@@ -133,6 +133,39 @@ namespace reactiveFormWeb.Controllers
 
         }
 
+        // DELETE: api/CreditCard/5
+        [HttpDelete("{id}")]
+        public override async Task<IActionResult> DeleteEntity([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var entity = await Repository.SingleOrDefaultAsync(m => m.Id == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            var currentUserId = User.FindFirst("Id").Value;
+            if (!string.IsNullOrEmpty(currentUserId))
+            {
+                var currentUser = await Context.ApplicationUser.AsNoTracking().FirstOrDefaultAsync(x => x.Id == int.Parse(currentUserId));
+                if (currentUser?.DefaultCreditCardId == id)
+                {
+                    var payload = new { errors = new string[]{"This credit card cannot be deleted because it is set as default"}};
+                    return Conflict(payload);
+                }
+                Repository.Remove(entity);
+                await Context.SaveChangesAsync();
+                return Ok(entity);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
         protected override IQueryable<CreditCard> ApplyFilter(CreditCardFilter filter)
         {
             var query = Repository.AsNoTracking().Where(x => x.UserId == filter.UserId);

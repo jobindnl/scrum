@@ -60,6 +60,13 @@ namespace reactiveFormWeb.Controllers
             {
                 return BadRequest(ModelState);
             }
+            
+            if (newEntity.HomeAddressId == 0)
+                newEntity.HomeAddressId = null;
+
+            if (newEntity.DefaultCreditCardId == 0)
+                newEntity.DefaultCreditCardId = null;
+
             var currentUserId = User.FindFirst("Id").Value;
             if (!string.IsNullOrEmpty(currentUserId))
             {

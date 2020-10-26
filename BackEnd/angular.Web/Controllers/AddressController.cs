@@ -131,6 +131,49 @@ namespace reactiveFormWeb.Controllers
             else
                 return NotFound("Invalid user");
         }
+
+        // DELETE: api/CreditCard/5
+        [HttpDelete("{id}")]
+        public override async Task<IActionResult> DeleteEntity([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var entity = await Repository.SingleOrDefaultAsync(m => m.Id == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            var currentUserId = User.FindFirst("Id").Value;
+            if (!string.IsNullOrEmpty(currentUserId))
+            {
+                var currentUser = await Context.ApplicationUser.AsNoTracking().FirstOrDefaultAsync(x => x.Id == int.Parse(currentUserId));
+                if (currentUser?.HomeAddressId == id)
+                {
+                    var payload = new { errors = new string[] { "This address cannot be deleted because it is set as home address" } };
+                    return Conflict(payload);
+                }
+                Repository.Remove(entity);
+                try
+                {
+                    await Context.SaveChangesAsync();
+                    return Ok(entity);
+                }
+                catch(Exception ex)
+                {
+                    throw;
+                }
+                
+                
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
         protected override IQueryable<Address> ApplyFilter(AddressFilter filter)
         {
             var query = Repository.AsNoTracking().Where(x=> x.UserId == filter.UserId);

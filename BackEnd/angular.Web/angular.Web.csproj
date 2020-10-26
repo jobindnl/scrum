@@ -38,14 +38,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\account\forgot-password\forgot-password.ts" />
+    <None Remove="ClientApp\src\app\account\verify-token-reset-password\verify-token-reset-password.validator.ts" />
     <None Remove="ClientApp\src\app\book\book.ts" />
-    <None Remove="ClientApp\src\app\user-profile\pwd-change\old-pwd.validator.ts" />
+    <None Remove="ClientApp\src\app\account\pwd-change\old-pwd.validator.ts" />
     <None Remove="ClientApp\src\app\user-profile\user-profile.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\app\account\tokeninfo.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\account\UserInfo.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\account\verify-token-reset-password\verify-token-reset-password.component.spec.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\account\verify-token-reset-password\verify-token-reset-password.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\account\verify-token-reset-password\verify-token-reset-password.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\address\address-form\address-form.component.spec.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\address\address-form\address-form.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\address\address.component.spec.ts" />
@@ -53,7 +58,7 @@
     <TypeScriptCompile Remove="ClientApp\src\app\address\address.service.spec.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\address\address.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\address\address.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\app\user-profile\pwd-change\pwdchange.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\account\pwd-change\pwdchange.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +69,16 @@
     <Content Include="ClientApp\tsconfig.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\EmailService\EmailService.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\src\app\account\verify-token-reset-password\verify-token-reset-password.validator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>  
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
