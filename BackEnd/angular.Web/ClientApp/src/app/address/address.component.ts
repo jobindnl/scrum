@@ -21,18 +21,22 @@ export class AddressComponent implements OnInit {
   delete(address: IAddress) {
     this.addressService.deleteAddress(address.id.toString())
       .subscribe(address => this.loadData(),
-      error => console.error(error));
+        error => this.handleError(error));
   }
 
   loadData() {
     this.addressService.getAddresses()
       .subscribe(addressesfromapi => this.addresses = addressesfromapi,
-        error => console.error(error));
-    //alert(this.addresses);
+        error => this.handleError(error));
   }
 
   loggedIn() {
     return this.accountService.loggedIn();
   }
 
+  handleError(error) {
+    if (error && error.error) {
+      alert(error.error["errors"]);
+    }
+  }
 }

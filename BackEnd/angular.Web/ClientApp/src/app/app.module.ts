@@ -26,10 +26,10 @@ import { CreditCardFormComponent } from './credit-card/credit-card-form/credit-c
 import { AddressComponent } from './address/address.component';
 import { AddressFormComponent } from './address/address-form/address-form.component';
 import { UserProfileFormComponent } from './user-profile/user-profile-form/user-profile-form.component';
-import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
-import { WishlistService } from './wishlist/wishlist.service';
-import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.component';
+import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
+import { EmailConfirmSentComponent } from './account/email-confirm-sent/email-confirm-sent.component';
+import { PwdChangeComponent } from './account/pwd-change/pwd-change.component';
+import { VerifyTokenResetPasswordComponent } from './account/verify-token-reset-password/verify-token-reset-password.component';
 import { WishlistDetailsComponent } from './wishlist/wishlist-details/wishlist-details.component';
 import { LogInterceptorService } from './services/log-interceptor.service';
 
@@ -55,9 +55,9 @@ import { LogInterceptorService } from './services/log-interceptor.service';
     AddressComponent,
     AddressFormComponent,
     PwdChangeComponent,
-    WishlistComponent,
-    WishlistFormComponent,
-    WishlistDetailsComponent
+    ForgotPasswordComponent,
+    EmailConfirmSentComponent,
+    VerifyTokenResetPasswordComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -85,9 +85,9 @@ import { LogInterceptorService } from './services/log-interceptor.service';
       { path: 'address-add', component: AddressFormComponent },
       { path: 'address-edit/:id', component: AddressFormComponent },
       { path: 'pwd-change', component: PwdChangeComponent },
-      { path: 'wishlist', component: WishlistComponent },
-      { path: 'wishlist-add', component: WishlistFormComponent },
-      { path: 'wishlist-edit/:id', component: WishlistFormComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'email-confirm-sent', component: EmailConfirmSentComponent },
+      { path: 'verify-token-reset-password', component: VerifyTokenResetPasswordComponent },
       { path: 'wishlist-details/:id', component: WishlistDetailsComponent },
     ])
   ],
