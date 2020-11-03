@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IBook } from '../../book/book';
+import { Iwishlist } from '../wishlist';
 import { IwishlistDetails } from './wishlist-details';
+
 
 
 @Injectable({
@@ -14,17 +16,12 @@ export class WishlistDetailsService {
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-  getWishlistItems(): Observable<IwishlistDetails[]> {
-
-    //TODO: map obtained result. (pipe and map functions)
-    return this.http.get<IwishlistDetails[]>(this.apiURL);
-  }
-
-  addToWishList(book: IBook): Observable<any> {
-    return this.http.post(this.apiURL, {book} );
+  addToWishList(book: IBook): Observable<IwishlistDetails> {
+    return this.http.post<IwishlistDetails>(this.apiURL + '/' + '43', { book }); // 43 is a wishlist Id I created.
   }
 
   removeFromWishlist(BookId: number): Observable<IwishlistDetails> {
     return this.http.delete<IwishlistDetails>(this.apiURL + '/' + BookId);
   }
+
 }

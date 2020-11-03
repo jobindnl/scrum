@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Iwishlist } from './wishlist';
@@ -17,7 +17,8 @@ export class WishlistService {
   }
 
   getWishlists(wishlistId: string): Observable<Iwishlist> {
-    return this.http.get<Iwishlist>(this.apiURL + '/' + wishlistId);
+    let params = new HttpParams().set('includeDetails', "true");
+    return this.http.get<Iwishlist>(this.apiURL + '/' + wishlistId, {params: params});
   }
 
   getWishlistID(Id: string): Observable<Iwishlist> {
@@ -35,5 +36,10 @@ export class WishlistService {
   updateWishlist(wishlist: Iwishlist): Observable<Iwishlist> {
     return this.http.put<Iwishlist>(this.apiURL + '/' + wishlist.id.toString(), wishlist);
   }
+
+  getWishlistDetails(wishlist: Iwishlist): Observable<Iwishlist> {
+    return this.http.get<Iwishlist>(this.apiURL + '/' + wishlist.wishlistDetails);
+  }
+
 
 }

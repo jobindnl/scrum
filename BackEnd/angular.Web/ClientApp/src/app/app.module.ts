@@ -88,7 +88,7 @@ import { LogInterceptorService } from './services/log-interceptor.service';
       { path: 'wishlist', component: WishlistComponent },
       { path: 'wishlist-add', component: WishlistFormComponent },
       { path: 'wishlist-edit/:id', component: WishlistFormComponent },
-      { path: 'wishlist-details', component: WishlistDetailsComponent },
+      { path: 'wishlist-details/:id', component: WishlistDetailsComponent },
     ])
   ],
   providers: [BookService,

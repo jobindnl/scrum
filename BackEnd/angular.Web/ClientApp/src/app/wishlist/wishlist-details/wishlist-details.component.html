@@ -1,1 +1,13 @@
-<p>wishlist-details works!</p>
+<table class="table" *ngIf="wishlists && wishlists.length">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>    
+      <ng-container *ngFor="let wishlist of wishlists">
+        <tr><td><h2>{{wishlist.wishlistDetails}}</h2></td></tr>
+        <tr *ngFor="let wishlist of wishlist.wishlistDetails"><td>{{wishlistDetails.BookId}}</td></tr>
+      </ng-container>
+  </tbody>
+</table>

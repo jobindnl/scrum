@@ -75,14 +75,22 @@ namespace angular.Web.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<WishListDetail>> GetWishListDetail(int id)
         {
-            var WishListDetail = await _context.WishListDetail.FindAsync(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            if (WishListDetail == null)
+            WishListDetail wishlistDetail;
+
+            wishlistDetail = await _context.WishListDetail
+               .FindAsync(id);
+
+            if (wishlistDetail == null)
             {
                 return NotFound();
             }
 
-            return WishListDetail;
+            return wishlistDetail;
         }
 
         // PUT: api/WishListDetail/5

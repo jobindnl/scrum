@@ -72,16 +72,31 @@ namespace angular.Web.Controllers
 
         // GET: api/Wishlist/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<WishList>> GetWishList(int id)
+        public async Task<ActionResult<WishList>> GetWishList(int id, bool  includeDetails = false)
         {
-            var wishList = await _context.WishList.FindAsync(id);
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            if (wishList == null)
+            WishList wishlist;
+
+            if(includeDetails)
+            {
+                wishlist = await _context.WishList.Include(x => x.Details)
+                    .FirstOrDefaultAsync(i => i.Id == id);
+            }
+            else
+            {
+                wishlist = await _context.WishList.FindAsync(id);
+            }
+
+            if(wishlist == null)
             {
                 return NotFound();
             }
 
-            return wishList;
+            return Ok(wishlist);
         }
 
         // PUT: api/Wishlist/5
