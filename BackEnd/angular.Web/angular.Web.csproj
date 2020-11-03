@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\author\author.ts" />
     <None Remove="ClientApp\src\app\book\book.ts" />
     <None Remove="ClientApp\src\app\user-profile\pwd-change\old-pwd.validator.ts" />
     <None Remove="ClientApp\src\app\user-profile\user-profile.ts" />

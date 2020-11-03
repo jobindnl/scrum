@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-genre',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenreComponent implements OnInit {
 
-  constructor() { }
+  constructor(public fb: FormBuilder) { }
+  genreSearchForm = this.fb.group({
+    genre: ['']
+  })
+
 
   ngOnInit() {
   }

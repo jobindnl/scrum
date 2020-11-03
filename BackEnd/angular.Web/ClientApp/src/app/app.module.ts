@@ -27,6 +27,7 @@ import { AddressComponent } from './address/address.component';
 import { AddressFormComponent } from './address/address-form/address-form.component';
 import { UserProfileFormComponent } from './user-profile/user-profile-form/user-profile-form.component';
 import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.component';
+import { BookDetailComponent } from './book/book-detail/book-detail.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.compone
     CreditCardFormComponent,
     AddressComponent,
     AddressFormComponent,
-    PwdChangeComponent
+    PwdChangeComponent,
+    BookDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -77,6 +79,7 @@ import { PwdChangeComponent } from './user-profile/pwd-change/pwd-change.compone
       { path: 'address-add', component: AddressFormComponent },
       { path: 'address-edit/:id', component: AddressFormComponent },
       { path: 'pwd-change', component: PwdChangeComponent },
+      { path: 'book-detail/:id', component: BookDetailComponent },
     ])
   ],
   providers: [BookService,
