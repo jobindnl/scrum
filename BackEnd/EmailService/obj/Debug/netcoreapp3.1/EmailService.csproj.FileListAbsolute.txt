@@ -6,3 +6,12 @@ C:\jennifer\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.Asse
 C:\jennifer\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.CoreCompileInputs.cache
 C:\jennifer\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.dll
 C:\jennifer\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.pdb
+C:\sebastian\scrum\BackEnd\EmailService\bin\Debug\netcoreapp3.1\EmailService.deps.json
+C:\sebastian\scrum\BackEnd\EmailService\bin\Debug\netcoreapp3.1\EmailService.dll
+C:\sebastian\scrum\BackEnd\EmailService\bin\Debug\netcoreapp3.1\EmailService.pdb
+C:\sebastian\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.csprojAssemblyReference.cache
+C:\sebastian\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfoInputs.cache
+C:\sebastian\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfo.cs
+C:\sebastian\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.CoreCompileInputs.cache
+C:\sebastian\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.dll
+C:\sebastian\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.pdb

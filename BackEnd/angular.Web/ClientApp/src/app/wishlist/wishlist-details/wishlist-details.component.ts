@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WishlistDetailsComponent implements OnInit {
 
-  wishlists: Iwishlist[];
+  wishlistDetails: IwishlistDetails[];
   wishlistId: number;
 
   constructor(private wishlistDetails: WishlistDetailsService, private wishlistService: WishlistService, private activatedRoute: ActivatedRoute) { }

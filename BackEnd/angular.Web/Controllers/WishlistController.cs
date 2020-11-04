@@ -83,7 +83,7 @@ namespace angular.Web.Controllers
 
             if(includeDetails)
             {
-                wishlist = await _context.WishList.Include(x => x.Details)
+                wishlist = await _context.WishList.Include(x => x.Details.Select(y => y.Book))
                     .FirstOrDefaultAsync(i => i.Id == id);
             }
             else

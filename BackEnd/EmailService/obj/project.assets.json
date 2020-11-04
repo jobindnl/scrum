@@ -5638,24 +5638,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/jobindaniel/.nuget/packages/": {}
+    "C:\\Users\\sebit\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jobindaniel/Documents/FIU/CEN4010/scrum/BackEnd/EmailService/EmailService.csproj",
+      "projectUniqueName": "C:\\sebastian\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
       "projectName": "EmailService",
-      "projectPath": "/Users/jobindaniel/Documents/FIU/CEN4010/scrum/BackEnd/EmailService/EmailService.csproj",
-      "packagesPath": "/Users/jobindaniel/.nuget/packages/",
-      "outputPath": "/Users/jobindaniel/Documents/FIU/CEN4010/scrum/BackEnd/EmailService/obj/",
+      "projectPath": "C:\\sebastian\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
+      "packagesPath": "C:\\Users\\sebit\\.nuget\\packages\\",
+      "outputPath": "C:\\sebastian\\scrum\\BackEnd\\EmailService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jobindaniel/.config/NuGet/NuGet.Config"
+        "C:\\Users\\sebit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5696,7 +5698,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

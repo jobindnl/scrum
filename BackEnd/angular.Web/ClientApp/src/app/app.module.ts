@@ -32,6 +32,11 @@ import { PwdChangeComponent } from './account/pwd-change/pwd-change.component';
 import { VerifyTokenResetPasswordComponent } from './account/verify-token-reset-password/verify-token-reset-password.component';
 import { WishlistDetailsComponent } from './wishlist/wishlist-details/wishlist-details.component';
 import { LogInterceptorService } from './services/log-interceptor.service';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { WishlistService } from './wishlist/wishlist.service';
+import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.component';
+
+
 
 
 @NgModule({
@@ -57,7 +62,10 @@ import { LogInterceptorService } from './services/log-interceptor.service';
     PwdChangeComponent,
     ForgotPasswordComponent,
     EmailConfirmSentComponent,
-    VerifyTokenResetPasswordComponent
+    VerifyTokenResetPasswordComponent,
+    WishlistComponent,
+    WishlistFormComponent,
+    WishlistDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -88,6 +96,9 @@ import { LogInterceptorService } from './services/log-interceptor.service';
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'email-confirm-sent', component: EmailConfirmSentComponent },
       { path: 'verify-token-reset-password', component: VerifyTokenResetPasswordComponent },
+      { path: 'wishlist', component: WishlistComponent },
+      { path: 'wishlist-add', component: WishlistFormComponent },
+      { path: 'wishlist-edit/:id', component: WishlistFormComponent },
       { path: 'wishlist-details/:id', component: WishlistDetailsComponent },
     ])
   ],
