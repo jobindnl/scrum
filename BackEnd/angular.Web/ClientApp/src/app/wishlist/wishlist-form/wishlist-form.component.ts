@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Iwishlist } from '../wishlist';
+import { IWishlist } from '../wishlist';
 import { WishlistService } from '../wishlist.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -31,20 +31,16 @@ export class WishlistFormComponent implements OnInit {
       if (params["id"] == undefined) {
         return;
       }
-
       this.editMode = true;
-
       this.wishlistId = params["id"];
-
-      this.wishlistService.getWishlists(this.wishlistId.toString())
+      this.wishlistService.getWishlists(this.wishlistId.toString(), false)
         .subscribe(wishlist => this.loadForm(wishlist),
-          error => console.error(error));
-
+          error => this.handleError(error));
     })
 
   }
 
-  loadForm(wishlist: Iwishlist) {
+  loadForm(wishlist: IWishlist) {
     this.formGroup.patchValue({
       Id: wishlist.id,
       Name: wishlist.name,
@@ -53,24 +49,31 @@ export class WishlistFormComponent implements OnInit {
   }
 
   save() {
-    let wishlist: Iwishlist = Object.assign({}, this.formGroup.value);
+    let wishlist: IWishlist = Object.assign({}, this.formGroup.value);
     console.table(wishlist);
 
     if (this.editMode) {
       wishlist.id = this.wishlistId;
       this.wishlistService.updateWishlist(wishlist)
         .subscribe(wishlist => this.onSaveSuccess(),
-          error => console.error(error));
+          error => this.handleError(error));
     } else {
 
       this.wishlistService.createWishlist(wishlist)
         .subscribe(wishlist => this.onSaveSuccess(),
-          error => console.error(error));
+          error => this.handleError(error));
     }
   }
 
   onSaveSuccess() {
     this.router.navigate(["/wishlist"]);
   }
+
+  handleError(error) {
+    if (error && error.error) {
+      alert(error.error["errors"]);
+    }
+  }
+
 
 }

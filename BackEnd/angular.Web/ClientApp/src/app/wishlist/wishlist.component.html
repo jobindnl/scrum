@@ -1,11 +1,11 @@
 <h1>Wishlists</h1>
 
-<button *ngIf="loggedIn()" [routerLink]='["/wishlist-add"]' class="btn-primary btn-primary-primary">Add wishlist </button>
+<button *ngIf="loggedIn() && (wishlists == null || (wishlists && wishlists.length && wishlists.length < 3))" [routerLink]='["/wishlist-add"]' class="btn-primary btn-primary-primary">Add wishlist </button>
 
 <table class="table" *ngIf="wishlists && wishlists.length">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Name </th>
     </tr>
   </thead>
   <tbody>

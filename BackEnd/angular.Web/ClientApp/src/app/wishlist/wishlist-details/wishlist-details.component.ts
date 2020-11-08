@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { WishlistDetailsService } from './wishlist-details.service';
-import { IwishlistDetails } from './wishlist-details';
-import { Iwishlist } from '../wishlist'
+import { IWishlist } from '../wishlist'
 import { WishlistService } from '../wishlist.service';
 import { ActivatedRoute } from '@angular/router';
+import { IWishlistDetail } from './wishlist-details';
+import { AccountService } from '../../account/account.service';
 
 @Component({
   selector: 'app-wishlist-details',
@@ -12,10 +13,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WishlistDetailsComponent implements OnInit {
 
-  wishlistDetails: IwishlistDetails[];
+  wishlistDetails: IWishlistDetail[];
   wishlistId: number;
 
-  constructor(private wishlistDetails: WishlistDetailsService, private wishlistService: WishlistService, private activatedRoute: ActivatedRoute) { }
+  constructor(private wishlistDetailsService: WishlistDetailsService, private accountService: AccountService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -25,16 +26,26 @@ export class WishlistDetailsComponent implements OnInit {
 
       this.wishlistId = params["id"];
 
-      this.wishlistService.getWishlists(this.wishlistId.toString())
-        .subscribe(wishlist => this.loadData(wishlist),
+      this.wishlistDetailsService.getWishlistDetails(this.wishlistId.toString())
+        .subscribe(wishlist => this.loadData(),
           error => console.error(error));
 
     })
   }
 
-  loadData(wishlist: Iwishlist) {
-    this.wishlistService.getWishlist()
-      .subscribe(wishlistsfromapi => this.wishlists = wishlistsfromapi,
+  loadData() {
+    this.wishlistDetailsService.getWishlistDetails(this.wishlistId.toString())
+      .subscribe(wishlistDetailsfromapi => this.wishlistDetails = wishlistDetailsfromapi,
+        error => console.error(error));
+  }
+
+  loggedIn() {
+    return this.accountService.loggedIn();
+  }
+
+  delete(wishlistDetail: IWishlistDetail) {
+    this.wishlistDetailsService.deleteWishlistDetail(wishlistDetail.id.toString())
+      .subscribe(wishlist => this.loadData(),
         error => console.error(error));
   }
 

@@ -1,8 +1,8 @@
-import { IwishlistDetails } from "./wishlist-details/wishlist-details";
+import { IWishlistDetail } from "./wishlist-details/wishlist-details";
 
-export interface Iwishlist {
+export interface IWishlist {
   id: number;
   name: string;
   userId: number;
-  wishlistDetails: IwishlistDetails[];
+  wishlistDetails: IWishlistDetail[];
 }

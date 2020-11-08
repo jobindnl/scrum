@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account/account.service';
-import { Iwishlist } from './wishlist';
+import { IWishlist } from './wishlist';
 import { WishlistService } from './wishlist.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { WishlistService } from './wishlist.service';
 })
 export class WishlistComponent implements OnInit {
 
-  wishlists: Iwishlist[];
+  wishlists: IWishlist[];
 
   constructor(private wishlistService: WishlistService, private accountService: AccountService) { }
 
@@ -28,7 +28,7 @@ export class WishlistComponent implements OnInit {
     return this.accountService.loggedIn();
   }
 
-  delete(wishlist: Iwishlist) {
+  delete(wishlist: IWishlist) {
     this.wishlistService.deleteWishlist(wishlist.id.toString())
       .subscribe(wishlist => this.loadData(),
         error => console.error(error));

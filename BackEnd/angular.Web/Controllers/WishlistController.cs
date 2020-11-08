@@ -79,56 +79,67 @@ namespace angular.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            WishList wishlist;
-
+            var query = _context.WishList.AsNoTracking();
             if(includeDetails)
             {
-                wishlist = await _context.WishList.Include(x => x.Details.Select(y => y.Book))
-                    .FirstOrDefaultAsync(i => i.Id == id);
-            }
-            else
-            {
-                wishlist = await _context.WishList.FindAsync(id);
+                query = query
+                    .Include(x => x.Details).ThenInclude(y => y.Book);
             }
 
-            if(wishlist == null)
+            try
             {
-                return NotFound();
+                var wishlist = await query.SingleOrDefaultAsync(i => i.Id == id);
+                if (wishlist == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(wishlist);
+            }
+            catch(Exception ex)
+            {
+                throw;
             }
 
-            return Ok(wishlist);
+
+
         }
 
         // PUT: api/Wishlist/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutWishList(int id, WishList wishList)
+        public async Task<IActionResult> PutWishList(int id, WishList newEntity)
         {
-            if (id != wishList.Id)
+            var currentUserId = User.FindFirst("Id").Value;
+            if (!string.IsNullOrEmpty(currentUserId))
             {
-                return BadRequest();
-            }
-
-            _context.Entry(wishList).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!WishListExists(id))
+                var oldentity = await _context.WishList.FirstOrDefaultAsync(x => x.Id == id);
+                if (oldentity != null)
                 {
-                    return NotFound();
+                    oldentity.Name = newEntity.Name;
                 }
-                else
+                try
                 {
-                    throw;
+                    await _context.SaveChangesAsync();
                 }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    if (!EntityExists(oldentity))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return CreatedAtAction("PutEntity", new { id = oldentity.Id }, oldentity);
             }
-
-            return NoContent();
+            else
+            {
+                return NotFound();
+            }
         }
 
         // POST: api/Wishlist
@@ -180,9 +191,11 @@ namespace angular.Web.Controllers
             return wishList;
         }
 
-        private bool WishListExists(int id)
+        private bool EntityExists(WishList entity)
         {
-            return _context.WishList.Any(e => e.Id == id);
+            if (entity == null)
+                return false;
+            return _context.WishList.Any(e => e.Id == entity.Id);
         }
 
         protected virtual string DefaultOrderBy()
