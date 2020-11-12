@@ -14,7 +14,7 @@
                type="text"
                required
                formControlName="name" />
-        <span class="help-block" *ngIf="(formGroup.get('name').touched || formGroup.get('name').dirty) && formGroup.get('name').errors">
+        <span class="help-block alert-danger" *ngIf="(formGroup.get('name').touched || formGroup.get('name').dirty) && formGroup.get('name').errors">
           <span *ngIf="formGroup.get('name').errors.required">
             Please enter name.
           </span>
@@ -33,10 +33,9 @@
                type="text"
                required
                formControlName="number" />
-        <span class="help-block" *ngIf="(formGroup.get('number').touched || formGroup.get('number').dirty) && formGroup.get('number').errors">
-          <span *ngIf="formGroup.get('number').errors.required">
-            Please enter number
-          </span>
+        <span class="help-block alert-danger" *ngIf="(formGroup.get('number').touched || formGroup.get('number').dirty) && formGroup.get('number').errors">
+          <span *ngIf="formGroup.get('number').errors.required">Please enter card number</span>
+          <span *ngIf="formGroup.get('number').errors.lenghtnot16">Card number should be 16 digits</span>
         </span>
       </div>
     </div>
@@ -52,10 +51,9 @@
                type="number"
                required
                formControlName="expMonth" />
-        <span class="help-block" *ngIf="(formGroup.get('expMonth').touched || formGroup.get('expMonth').dirty) && formGroup.get('expMonth').errors">
-          <span *ngIf="formGroup.get('expMonth').errors.required">
-            Please enter expiration month
-          </span>
+        <span class="help-block alert-danger" *ngIf="(formGroup.get('expMonth').touched || formGroup.get('expMonth').dirty) && formGroup.get('expMonth').errors">
+          <span *ngIf="formGroup.get('expMonth').errors.required">Please enter expiration month</span>
+          <span *ngIf="formGroup.get('expMonth').errors.monthnotbetween1_12">Month value should be between 1 and 12</span>
         </span>
       </div>
     </div>
@@ -71,16 +69,15 @@
                type="number"
                required
                formControlName="expYear" />
-        <span class="help-block" *ngIf="(formGroup.get('expYear').touched || formGroup.get('expYear').dirty) && formGroup.get('expYear').errors">
-          <span *ngIf="formGroup.get('expYear').errors.required">
-            Please enter expiration year
-          </span>
+        <span class="help-block alert-danger" *ngIf="(formGroup.get('expYear').touched || formGroup.get('expYear').dirty) && formGroup.get('expYear').errors">
+          <span *ngIf="formGroup.get('expYear').errors.required">Please enter expiration year</span>
+          <span *ngIf="formGroup.get('expYear').errors.nonexpiredcard">Card is expired</span>
         </span>
       </div>
     </div>
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('cvv').touched || formGroup.get('cvv').dirty) && !formGroup.get('cvv').valid }">
-      <label class="col-md-2 control-label"
+      <label class="col-md-3 control-label"
              for="cvv">Card Security Code</label>
 
       <div class="col-md-8">
@@ -89,14 +86,13 @@
                type="text"
                required
                formControlName="cvv" />
-        <span class="help-block" *ngIf="(formGroup.get('cvv').touched || formGroup.get('cvv').dirty) && formGroup.get('cvv').errors">
-          <span *ngIf="formGroup.get('cvv').errors.required">
-            Please enter card security code
-          </span>
+        <span class="help-block alert-danger" *ngIf="(formGroup.get('cvv').touched || formGroup.get('cvv').dirty) && formGroup.get('cvv').errors">
+          <span *ngIf="formGroup.get('cvv').errors.required">Please enter card security code</span>
+          <span *ngIf="formGroup.get('cvv').errors.lenghtnot3">CVV should be 3 digits</span>
         </span>
       </div>
     </div>
-  
+
     <div class="form-group">
       <div class="col-md-4 col-md-offset-2">
         <span>
@@ -114,6 +110,9 @@
 
       </div>
 
+    </div>
+    <div class="form-group">
+      <span>Valid Form: {{formGroup.valid}}</span>
     </div>
   </fieldset>
 </form>
