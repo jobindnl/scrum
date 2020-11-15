@@ -35,6 +35,7 @@ import { LogInterceptorService } from './services/log-interceptor.service';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { WishlistService } from './wishlist/wishlist.service';
 import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 
 
@@ -65,7 +66,8 @@ import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.co
     VerifyTokenResetPasswordComponent,
     WishlistComponent,
     WishlistFormComponent,
-    WishlistDetailsComponent
+    WishlistDetailsComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -100,6 +102,7 @@ import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.co
       { path: 'wishlist-add', component: WishlistFormComponent },
       { path: 'wishlist-edit/:id', component: WishlistFormComponent },
       { path: 'wishlist-details/:id', component: WishlistDetailsComponent },
+      { path: 'shopping-cart', component: ShoppingCartComponent}
     ])
   ],
   providers: [BookService,
