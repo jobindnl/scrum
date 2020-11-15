@@ -3,6 +3,16 @@ using System.Collections.Generic;
 
 namespace angular.Web.Models
 {
+    public class WishListFilter
+    {
+        public int? Id { get; set; }
+
+        public string SearchString { get; set; }
+
+        public string Names { get; set; }
+
+        public int? UserId { get; set; }
+    }
     public class WishList : EntityBase
     {
         public int Id { get; set; }

@@ -1,24 +1,18 @@
 <header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">Geek Text</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-        [ngClass]="{ show: isExpanded }"
-      >
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+           [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow">
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
@@ -31,17 +25,22 @@
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/author']">Authors</a>
           </li>
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/wishlist']">Wishlist</a>
+          </li>
+
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/genre']">Genres</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/user-profile']">Account</a>
           </li>
-          <li *ngIf="!loggedIn()" [routerLinkActive]='["link-active"]'>
+          <li *ngIf="!loggedIn()" [routerLinkActive]='["link-active"]' style="padding: .5rem 1rem;">
             <a [routerLink]='["/register-login"]' (click)='collapse()'>Register / Login</a>
           </li>
-          <li *ngIf="loggedIn()" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" (click)='logout()'>Logout</a>
+          <li *ngIf="loggedIn()" [routerLinkActive]='["link-active"]' style="padding: .5rem 1rem;">
+            <a [routerLink]="" (click)='logout()'>Logout</a>
           </li>
         </ul>
       </div>

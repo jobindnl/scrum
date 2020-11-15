@@ -1,0 +1,27 @@
+<h1>Wishlists</h1>
+
+<button *ngIf="loggedIn()" [routerLink]='["/wishlistdetail-add"]' class="btn-primary btn-primary-primary">Add detail </button>
+
+<table class="table" *ngIf="wishlistDetails && wishlistDetails.length">
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let detail of wishlistDetails">
+      <td>{{detail.book.title}}</td>
+      <td>{{detail.book.salesPrice}}</td>
+      <td>{{detail.quantity}}</td>
+      <td>
+        <button [routerLink]='["/wishlistdetail-edit/" + detail.id]'>Edit</button>
+        <button (click)="delete(detail)">Delete</button>
+        <button [routerLink]='["/wishlist-details/" + detail.id]'>View details</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button [routerLink]='["/wishlist"]' class="btn-primary btn-primary-primary">Back to wish lists</button>

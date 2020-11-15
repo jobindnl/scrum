@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account/account.service';
-import { IBook} from './book'
+import { ITokenInfo } from '../account/tokeninfo';
+import { IBook } from './book'
 import { BookService } from './book.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class BookComponent implements OnInit {
   delete(book: IBook) {
     this.bookService.deleteBook(book.id.toString())
       .subscribe(book => this.loadData(),
-      error => console.error(error));
+        error => console.error(error));
   }
 
   loadData() {
@@ -32,6 +33,10 @@ export class BookComponent implements OnInit {
 
   loggedIn() {
     return this.accountService.loggedIn();
+  }
+
+  isAdmin() {
+    return this.accountService.isAdmin();
   }
 
 }

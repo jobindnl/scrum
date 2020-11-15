@@ -6,7 +6,7 @@
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('title').touched || formGroup.get('title').dirty) && !formGroup.get('title').valid }">
       <label class="col-md-2 control-label"
-             for="nombreId">Title</label>
+             for="title">Title</label>
 
       <div class="col-md-8">
         <input class="form-control"
@@ -14,7 +14,7 @@
                type="text"
                required
                formControlName="title" />
-        <span class="help-block" *ngIf="(formGroup.get('title').touched || formGroup.get('title').dirty) && formGroup.get('title').errors">
+        <span class="alert alert-danger" *ngIf="(formGroup.get('title').touched || formGroup.get('title').dirty) && formGroup.get('title').errors">
           <span *ngIf="formGroup.get('title').errors.required">
             Please enter title.
           </span>
@@ -33,7 +33,7 @@
                type="number"
                required
                formControlName="salesPrice" />
-        <span class="help-block" *ngIf="(formGroup.get('salesPrice').touched || formGroup.get('salesPrice').dirty) && formGroup.get('salesPrice').errors">
+        <span class="alert alert-danger" *ngIf="(formGroup.get('salesPrice').touched || formGroup.get('salesPrice').dirty) && formGroup.get('salesPrice').errors">
           <span *ngIf="formGroup.get('salesPrice').errors.required">
             Please enter price
           </span>
@@ -52,7 +52,7 @@
                type="text"
                required
                formControlName="description" />
-        <span class="help-block" *ngIf="(formGroup.get('description').touched || formGroup.get('description').dirty) && formGroup.get('description').errors">
+        <span class="alert alert-danger" *ngIf="(formGroup.get('description').touched || formGroup.get('description').dirty) && formGroup.get('description').errors">
           <span *ngIf="formGroup.get('description').errors.required">
             Please enter description
           </span>
@@ -71,7 +71,7 @@
                type="text"
                required
                formControlName="publishingInfo" />
-        <span class="help-block" *ngIf="(formGroup.get('publishingInfo').touched || formGroup.get('publishingInfo').dirty) && formGroup.get('publishingInfo').errors">
+        <span class="alert alert-danger" *ngIf="(formGroup.get('publishingInfo').touched || formGroup.get('publishingInfo').dirty) && formGroup.get('publishingInfo').errors">
           <span *ngIf="formGroup.get('publishingInfo').errors.required">
             Please enter publishing information
           </span>
@@ -89,7 +89,7 @@
                type="number"
                required
                formControlName="authorId" />
-        <span class="help-block" *ngIf="(formGroup.get('authorId').touched || formGroup.get('authorId').dirty) && formGroup.get('authorId').errors">
+        <span class="alert alert-danger" *ngIf="(formGroup.get('authorId').touched || formGroup.get('authorId').dirty) && formGroup.get('authorId').errors">
           <span *ngIf="formGroup.get('authorId').errors.required">
             Please enter author Id
           </span>
@@ -107,7 +107,7 @@
                type="number"
                required
                formControlName="genreId" />
-        <span class="help-block" *ngIf="(formGroup.get('genreId').touched || formGroup.get('genreId').dirty) && formGroup.get('genreId').errors">
+        <span class="alert alert-danger" *ngIf="(formGroup.get('genreId').touched || formGroup.get('genreId').dirty) && formGroup.get('genreId').errors">
           <span *ngIf="formGroup.get('genreId').errors.required">
             Please enter genre Id
           </span>

@@ -1,0 +1,107 @@
+<h1>Edit Account</h1>
+<form class="form-horizontal" novalidate (ngSubmit)="save()" [formGroup]="formGroup">
+  <fieldset>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('name').touched || formGroup.get('name').dirty) && !formGroup.get('name').valid }">
+      <label class="col-md-2 control-label"
+             for="name">Name</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="name"
+               type="text"
+               required
+               formControlName="name" />
+        <span class="help-block" *ngIf="(formGroup.get('name').touched || formGroup.get('name').dirty) && formGroup.get('name').errors">
+          <span *ngIf="formGroup.get('name').errors.required">
+            Please enter name.
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('nickName').touched || formGroup.get('nickName').dirty) && !formGroup.get('nickName').valid }">
+      <label class="col-md-2 control-label"
+             for="name">NickName</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="nickName"
+               type="text"
+               required
+               formControlName="nickName" />
+        <span class="help-block" *ngIf="(formGroup.get('nickName').touched || formGroup.get('nickName').dirty) && formGroup.get('nickName').errors">
+          <span *ngIf="formGroup.get('nickName').errors.required">
+            Please enter nickName.
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('email').touched || formGroup.get('email').dirty) && !formGroup.get('email').valid }">
+      <label class="col-md-2 control-label"
+             for="name">Email</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="email"
+               type="text"
+               required
+               formControlName="email" />
+        <span class="help-block" *ngIf="(formGroup.get('email').touched || formGroup.get('email').dirty) && formGroup.get('email').errors">
+          <span *ngIf="formGroup.get('email').errors.required">
+            Please enter email.
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('homeAddressId').touched || formGroup.get('homeAddressId').dirty) && !formGroup.get('homeAddressId').valid }">
+      <label class="col-md-2 control-label"
+             for="name">Home Address</label>
+
+      <div class="col-md-8">
+        <select formControlName="homeAddressId" [(ngModel)]="userProfile.homeAddressId" *ngIf="userProfile && userProfile.shippingAddresses">
+          <option value="0">Select hom address</option>
+          <option *ngFor="let address of userProfile.shippingAddresses" value="{{address.id}}">{{address.streetAddress}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('defaultCreditCardId').touched || formGroup.get('defaultCreditCardId').dirty) && !formGroup.get('defaultCreditCardId').valid }">
+      <label class="col-md-2 control-label"
+             for="name">Default Credit Card</label>
+
+      <div class="col-md-8">
+        <select formControlName="defaultCreditCardId" [(ngModel)]="userProfile.defaultCreditCardId" *ngIf="userProfile && userProfile.creditCards">
+          <option value="0">Select default credit card</option>
+          <option *ngFor="let creditCard of userProfile.creditCards" value="{{creditCard.id}}">{{creditCard.number}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-2">
+        <span>
+          <button class="btn btn-primary"
+                  type="submit"
+                  [disabled]="!formGroup.valid">
+            Save
+          </button>
+          <button class="btn"
+                  type="button"
+                  [routerLink]="['/user-profile']">
+            Cancel
+          </button>
+        </span>
+
+      </div>
+
+    </div>
+  </fieldset>
+</form>

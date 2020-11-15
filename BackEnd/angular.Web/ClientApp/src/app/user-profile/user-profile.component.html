@@ -1,27 +1,69 @@
 <h1>Account</h1>
+<button [routerLink]='["/user-profile-edit"]' class="btn-primary btn-primary-primary">Edit Account </button>
 
-<button *ngIf="loggedIn()" [routerLink]='["/book-add"]' class="btn-primary btn-primary-primary">Add book </button>
+<form class="form-horizontal" novalidate
+      (ngSubmit)="save()" [formGroup]="formGroup">
+  <fieldset>
 
-<table class="table" *ngIf="books && books.length">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Card Number</th>
-      <th>Exp. Date</th>
-      <th>CVV</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let card of cards">
-      <td>{{book.title}}</td>
-      <td>{{book.salesPrice}}</td>
-      <td>{{book.description}}</td>
-      <td>{{book.publishingInfo}}</td>
-      <td>{{book.authorId}}</td>
-      <td>
-        <button [routerLink]='["/book-edit/" + book.id]'>Edit</button>
-        <button (click)="delete(book)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('name').touched || formGroup.get('name').dirty) && !formGroup.get('name').valid }">
+      <label class="col-md-2 control-label"
+             for="name">Name</label>
+      <label class="col-md-2 control-label"
+             for="name" *ngIf="userProfile">{{userProfile.name}}</label>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('nickName').touched || formGroup.get('nickName').dirty) && !formGroup.get('nickName').valid }">
+      <label class="col-md-2 control-label"
+             for="nickName">nickName</label>
+      <label class="col-md-2 control-label"
+             for="nickName" *ngIf="userProfile">{{userProfile.nickName}}</label>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('email').touched || formGroup.get('email').dirty) && !formGroup.get('email').valid }">
+      <label class="col-md-2 control-label"
+             for="email">Email</label>
+      <label class="col-md-2 control-label"
+             for="email" *ngIf="userProfile">{{userProfile.email}}</label>
+
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('homeAddressId').touched || formGroup.get('homeAddressId').dirty) && !formGroup.get('homeAddressId').valid }">
+      <label class="col-md-2 control-label"
+             for="homeAddressId">Home Address</label>
+      <label class="col-md-8 control-label"
+             for="homeAddressId" *ngIf="userProfile && userProfile.homeAddress">
+        {{userProfile.homeAddress.streetAddress}}
+        {{userProfile.homeAddress.city}}
+        {{userProfile.homeAddress.state}}
+        {{userProfile.homeAddress.zipCode}}
+        {{userProfile.homeAddress.country}}
+      </label>
+
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('defaultCreditCardId').touched || formGroup.get('defaultCreditCardId').dirty) && !formGroup.get('defaultCreditCardId').valid }">
+      <label class="col-md-2 control-label"
+             for="defaultCreditCardId">Default Credit Card</label>
+      <label class="col-md-8 control-label"
+             for="defaultCreditCardId" *ngIf="userProfile && userProfile.defaultCreditCard">
+        {{userProfile.defaultCreditCard.number}}
+        Exp: {{userProfile.defaultCreditCard.expMonth}}/{{userProfile.defaultCreditCard.expYear}}
+      </label>
+
+    </div>
+
+
+    <div class="form-group">
+      <a [routerLink]="['/address']">Shipping Addresses</a>
+      <p ng-bind-html="this.body|lineBreak"></p>
+      <a [routerLink]="['/credit-card']">Credit Cards</a>
+      <p ng-bind-html="this.body|lineBreak"></p>
+      <a [routerLink]="['/pwd-change']">Change Password</a>
+    </div>
+  </fieldset>
+</form>

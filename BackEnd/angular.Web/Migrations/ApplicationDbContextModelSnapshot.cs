@@ -205,6 +205,9 @@ namespace angular.Web.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("DefaultCreditCardId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -220,6 +223,10 @@ namespace angular.Web.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
 
                     b.Property<string>("NickName")
                         .HasColumnType("nvarchar(150)")
@@ -253,6 +260,8 @@ namespace angular.Web.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DefaultCreditCardId");
 
                     b.HasIndex("HomeAddressId");
 
@@ -575,6 +584,10 @@ namespace angular.Web.Migrations
 
             modelBuilder.Entity("angular.Web.Models.ApplicationUser", b =>
                 {
+                    b.HasOne("angular.Web.Models.CreditCard", "DefaultCreditCard")
+                        .WithMany()
+                        .HasForeignKey("DefaultCreditCardId");
+
                     b.HasOne("angular.Web.Models.Address", "HomeAddress")
                         .WithMany()
                         .HasForeignKey("HomeAddressId");

@@ -1,5 +1,11 @@
 ﻿namespace angular.Web.Models
 {
+    public class CreditCardFilter
+    {
+        public int UserId { get; set; }
+        public int? Id { get; set; }
+    }
+
     public class CreditCard : EntityBase
     {
         public int Id { get; set; }

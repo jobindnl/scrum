@@ -1,0 +1,119 @@
+<h1>{{editMode ? 'Edit' : 'Add'}} Credit Cards</h1>
+<form class="form-horizontal" novalidate
+      (ngSubmit)="save()" [formGroup]="formGroup">
+  <fieldset>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('name').touched || formGroup.get('name').dirty) && !formGroup.get('name').valid }">
+      <label class="col-md-2 control-label"
+             for="name">Name</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="name"
+               type="text"
+               required
+               formControlName="name" />
+        <span class="help-block" *ngIf="(formGroup.get('name').touched || formGroup.get('name').dirty) && formGroup.get('name').errors">
+          <span *ngIf="formGroup.get('name').errors.required">
+            Please enter name.
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('number').touched || formGroup.get('number').dirty) && !formGroup.get('number').valid }">
+      <label class="col-md-2 control-label"
+             for="number">Number</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="number"
+               type="text"
+               required
+               formControlName="number" />
+        <span class="help-block" *ngIf="(formGroup.get('number').touched || formGroup.get('number').dirty) && formGroup.get('number').errors">
+          <span *ngIf="formGroup.get('number').errors.required">
+            Please enter number
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('expMonth').touched || formGroup.get('expMonth').dirty) && !formGroup.get('expMonth').valid }">
+      <label class="col-md-2 control-label"
+             for="expMonth">Expiration Month</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="expMonth"
+               type="number"
+               required
+               formControlName="expMonth" />
+        <span class="help-block" *ngIf="(formGroup.get('expMonth').touched || formGroup.get('expMonth').dirty) && formGroup.get('expMonth').errors">
+          <span *ngIf="formGroup.get('expMonth').errors.required">
+            Please enter expiration month
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('expYear').touched || formGroup.get('expYear').dirty) && !formGroup.get('expYear').valid }">
+      <label class="col-md-2 control-label"
+             for="expYear">Expiration Year</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="expYear"
+               type="number"
+               required
+               formControlName="expYear" />
+        <span class="help-block" *ngIf="(formGroup.get('expYear').touched || formGroup.get('expYear').dirty) && formGroup.get('expYear').errors">
+          <span *ngIf="formGroup.get('expYear').errors.required">
+            Please enter expiration year
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group"
+         [ngClass]="{'has-error': (formGroup.get('cvv').touched || formGroup.get('cvv').dirty) && !formGroup.get('cvv').valid }">
+      <label class="col-md-2 control-label"
+             for="cvv">Card Security Code</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+               id="cvv"
+               type="text"
+               required
+               formControlName="cvv" />
+        <span class="help-block" *ngIf="(formGroup.get('cvv').touched || formGroup.get('cvv').dirty) && formGroup.get('cvv').errors">
+          <span *ngIf="formGroup.get('cvv').errors.required">
+            Please enter card security code
+          </span>
+        </span>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-2">
+        <span>
+          <button class="btn btn-primary"
+                  type="submit"
+                  [disabled]="!formGroup.valid">
+            Save
+          </button>
+          <button class="btn"
+                  type="button"
+                  [routerLink]="['/credit-card']">
+            Cancel
+          </button>
+        </span>
+
+      </div>
+
+    </div>
+  </fieldset>
+</form>

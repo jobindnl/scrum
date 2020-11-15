@@ -7,7 +7,6 @@ using reactiveFormWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Dynamic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -103,6 +102,7 @@ namespace angular.Web.Controllers
         [HttpPost]
         public virtual async Task<IActionResult> PostEntity([FromBody] TEntity entity)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -115,7 +115,7 @@ namespace angular.Web.Controllers
 
         // DELETE: api/Book/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEntity([FromRoute] int id)
+        public virtual async Task<IActionResult> DeleteEntity([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {

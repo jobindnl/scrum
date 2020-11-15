@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "c7d896df-976f-4e0b-a951-2546f87ce952",
+		"name": "GeekText",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Get Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ApplicationUser/jennifer@gmail.com",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ApplicationUser",
+								"jennifer@gmail.com"
+							],
+							"query": [
+								{
+									"key": "TopSellers",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "GenreIds",
+									"value": "1,2,3,4",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Books by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/book/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"GenreId\" : 1,\r\n    \"Title\" : \"My Title 2\",\r\n    \"SalesPrice\": 23.25,\r\n    \"Description\" : \"aklna;alkna;lknal;knal;\",\r\n    \"PublishingInfo\" : \" Tghis is my publishing info\",\r\n    \"AuthorId\" : 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/book",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\" : 2,\r\n    \"GenreId\" : 1,\r\n    \"Title\" : \"My Title 22222 updated\",\r\n    \"SalesPrice\": 20.25,\r\n    \"Description\" : \"my update updated updatedddddd\",\r\n    \"PublishingInfo\" : \" This is my publishing info updated\",\r\n    \"AuthorId\" : 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/book/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/book/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Forecast",
+			"item": [
+				{
+					"name": "Get Forecast",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/weatherforecast",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"weatherforecast"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User-Profile",
+			"item": [
+				{
+					"name": "Get User by Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ApplicationUser/jennifer@gmail.com",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ApplicationUser",
+								"jennifer@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put User by Email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nickName\": \"Pepe el cojo\",\r\n    \"homeAddress\": {\r\n        \"StreetAddress\": \"frfddfdg\",\r\n        \"City\" : \"jbfjhbh\",\r\n        \"State\": \"fdkjjf\",\r\n        \"ZipCode\": \"7767\",\r\n        \"Country\": \"bfhbfhjsd\"\r\n    },\r\n    \"shippingAddresses\": null,\r\n    \"creditCards\": null,\r\n    \"id\": 1,\r\n    \"normalizedUserName\": \"JENNIFER@GMAIL.COM\",\r\n    \"email\": \"jennifer@gmail.com\",\r\n    \"phoneNumber\": \"1784492270\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/ApplicationUser/jennifer@gmail.com",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ApplicationUser",
+								"jennifer@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Address",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/Address",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"Address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Credit Card",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/Address",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"Address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"userId\": 1,\r\n    \"streetAddress\": \"17892 NWfrfdffgdfdfd\",\r\n    \"city\": \"Hialeah\",\r\n    \"state\": \"fdkjjf\",\r\n    \"zipCode\": \"7767fdfdfdf\",\r\n    \"country\": \"bfhbfhjdfdfgdfgdfdfsd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/Address/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"Address",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\": 1,\r\n    \"StreetAddress\": \"17892 NW\",\r\n    \"City\": \"Hialeah\",\r\n    \"State\": \"fdkjjf\",\r\n    \"ZipCode\": \"7767\",\r\n    \"Country\": \"bfhbfhjsd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/Address",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"Address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/Address/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"Address",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

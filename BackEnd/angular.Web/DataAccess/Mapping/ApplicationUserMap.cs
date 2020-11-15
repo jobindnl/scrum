@@ -12,9 +12,16 @@ namespace reactiveFormWeb.DataAccess.Mapping
             entityBuilder.Property(x => x.NickName)
                 .HasMaxLength(150);
 
+            entityBuilder.Property(x => x.Name)
+                .HasMaxLength(150);
+
             entityBuilder.HasOne(x => x.HomeAddress)
                 .WithMany()
                 .HasForeignKey(x => x.HomeAddressId);
+
+            entityBuilder.HasOne(x => x.DefaultCreditCard)
+               .WithMany()
+               .HasForeignKey(x => x.DefaultCreditCardId);
         }
     }
 }
