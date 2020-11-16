@@ -42,8 +42,8 @@
 
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('expMonth').touched || formGroup.get('expMonth').dirty) && !formGroup.get('expMonth').valid }">
-      <label class="col-md-2 control-label"
-             for="expMonth">Expiration Month</label>
+      <label class="col-md-3 control-label"
+             for="expMonth">Expiration Month (MM)</label>
 
       <div class="col-md-8">
         <input class="form-control"
@@ -61,7 +61,7 @@
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('expYear').touched || formGroup.get('expYear').dirty) && !formGroup.get('expYear').valid }">
       <label class="col-md-2 control-label"
-             for="expYear">Expiration Year</label>
+             for="expYear">Expiration Year (YYYY)</label>
 
       <div class="col-md-8">
         <input class="form-control"
@@ -110,9 +110,6 @@
 
       </div>
 
-    </div>
-    <div class="form-group">
-      <span>Valid Form: {{formGroup.valid}}</span>
     </div>
   </fieldset>
 </form>
