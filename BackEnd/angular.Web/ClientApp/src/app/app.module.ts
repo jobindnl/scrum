@@ -64,7 +64,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     AddressFormComponent,
     PwdChangeComponent,
     ForgotPasswordComponent,
-    BookDetailComponent
+    BookDetailComponent,
     EmailConfirmSentComponent,
     VerifyTokenResetPasswordComponent,
     WishlistComponent,

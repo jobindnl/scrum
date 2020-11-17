@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ICreditCard } from '../credit-card';
 import { CreditCardService } from '../credit-card.service';
 import { CreditCardValidators } from './creditcard.validator';
-  
+
 @Component({
   selector: 'app-credit-card-form',
   templateUrl: './credit-card-form.component.html',
@@ -15,7 +15,7 @@ export class CreditCardFormComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private creditCardService: CreditCardService,
     private router: Router,
-    private activatedRoute: ActivatedRoute ) { }
+    private activatedRoute: ActivatedRoute) { }
 
 
   editMode: boolean = false;
@@ -23,7 +23,7 @@ export class CreditCardFormComponent implements OnInit {
   creditCardId: number;
 
 
-  ngOnInit()
+  ngOnInit() {
 
     this.formGroup = this.fb.group({
       name: ['', Validators.required],
@@ -63,7 +63,7 @@ export class CreditCardFormComponent implements OnInit {
 
     if (this.editMode) {
       //edit credit card
-      
+
       var x: number = +this.creditCardId;
       creditCard.id = x;
       this.creditCardService.updateCreditCard(creditCard)

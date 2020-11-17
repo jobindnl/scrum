@@ -28,13 +28,16 @@ export class GenreComponent implements OnInit {
   onSubmit() {
     let genreId = this.genreSearchForm.get('genre').value;
     this.genreService.searchBooks(genreId).subscribe((data: any) => this.bookData = data);
-    this.bookData.forEach(book => {
-      let authorName = ""; 
-      this.authorData.forEach(author => {
-        if (author.id == book.authorId) { authorName=author.name }
+    if (this.bookData != null) {
+      this.bookData.forEach(book => {
+        let authorName = "";
+        if (this.authorData != null) {
+          this.authorData.forEach(author => {
+            if (author.id == book.authorId) { authorName = author.name }
+          });
+        }
       });
-
-    });
+    }
   }
 
   ngOnInit() {
