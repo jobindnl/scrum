@@ -13,29 +13,29 @@ using System.Threading.Tasks;
 namespace angular.Web.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Genre")]
-    public class GenreController: CRUDController<Book, GenreFilter>
+    [Route("api/Author")]
+    public class AuthorController : CRUDController<Book, AuthorFilter>
     {
-        private readonly ApplicationDbContext _context; 
+        private readonly ApplicationDbContext _context;
 
-        public GenreController(ApplicationDbContext context, IConfiguration configuration, UserManager<ApplicationUser> userManager) : base(context, configuration)
+        public AuthorController(ApplicationDbContext context, IConfiguration configuration, UserManager<ApplicationUser> userManager) : base(context, configuration)
         {
-            _context = context; 
+            _context = context;
         }
 
         [HttpGet("all")]
-        public IEnumerable<Genre> GetAllGenres()
+        public IEnumerable<Author> GetAllAuthors()
         {
-            return _context.Genre; 
+            return _context.Author;
         }
 
-        protected override IQueryable<Book> ApplyFilter(GenreFilter filter)
+        protected override IQueryable<Book> ApplyFilter(AuthorFilter filter)
         {
             var query = Repository.AsNoTracking();
 
             if (filter.Id != null)
             {
-                query = query.Where(x => x.GenreId == filter.Id.Value);
+                query = query.Where(x => x.AuthorId == filter.Id.Value);
             }
 
             return query;

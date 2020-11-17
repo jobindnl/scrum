@@ -13,6 +13,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BookComponent } from './book/book.component';
 import { AuthorComponent } from './author/author.component';
 import { GenreComponent } from './genre/genre.component';
+import { GenreService } from './genre/genre.service'; 
 import { BookFormComponent } from './book/book-form/book-form.component';
 import { GenreFormComponent } from './genre/genre-form/genre-form.component';
 import { AuthorFormComponent } from './author/author-form/author-form.component';
@@ -85,6 +86,7 @@ import { BookDetailComponent } from './book/book-detail/book-detail.component';
   providers: [BookService,
     AuthGuardService,
     AccountService,
+    GenreService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

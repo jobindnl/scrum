@@ -84,11 +84,15 @@
              for="authorId">authorId</label>
 
       <div class="col-md-8">
-        <input class="form-control"
-               id="authorId"
-               type="number"
-               required
-               formControlName="authorId" />
+        <select formControlName="authorId" class="custom-select">
+
+          <option value="" disabled>Select Author</option>
+          <option *ngFor="let authorInfo of authorData"
+                  [value]="authorInfo.id">
+            {{authorInfo.name}}
+          </option>
+
+        </select>
         <span class="alert alert-danger" *ngIf="(formGroup.get('authorId').touched || formGroup.get('authorId').dirty) && formGroup.get('authorId').errors">
           <span *ngIf="formGroup.get('authorId').errors.required">
             Please enter author Id
@@ -102,11 +106,14 @@
              for="genreId">genreId</label>
 
       <div class="col-md-8">
-        <input class="form-control"
-               id="genreId"
-               type="number"
-               required
-               formControlName="genreId" />
+        <select formControlName="genreId" class="custom-select">
+
+          <option value="" disabled>Select Genre</option>
+          <option *ngFor="let genreInfo of genreData"
+                  [value]="genreInfo.id">
+            {{genreInfo.name}}
+          </option>
+        </select>
         <span class="alert alert-danger" *ngIf="(formGroup.get('genreId').touched || formGroup.get('genreId').dirty) && formGroup.get('genreId').errors">
           <span *ngIf="formGroup.get('genreId').errors.required">
             Please enter genre Id
