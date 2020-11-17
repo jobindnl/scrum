@@ -1,1 +1,12 @@
-<p>genre works!</p>
+<p>Genre</p>
+
+<form [formGroup]="genreSearchForm" (ngSubmit)="onSubmit()">
+
+  <select class="custom-select">
+    <option value="" disabled>Select Genre</option>
+    <option >Horror</option>
+
+  </select>
+  <button type="submit">Search</button>
+
+</form>

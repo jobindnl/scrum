@@ -36,8 +36,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { WishlistService } from './wishlist/wishlist.service';
 import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-
-
+import { BookDetailComponent } from './book/book-detail/book-detail.component';
 
 
 @NgModule({
@@ -68,6 +67,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     WishlistFormComponent,
     WishlistDetailsComponent,
     ShoppingCartComponent
+    BookDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -103,6 +103,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
       { path: 'wishlist-edit/:id', component: WishlistFormComponent },
       { path: 'wishlist-details/:id', component: WishlistDetailsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent}
+      { path: 'book-detail/:id', component: BookDetailComponent },
     ])
   ],
   providers: [BookService,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IAuthor } from './author';
 
 @Component({
   selector: 'app-author',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent implements OnInit {
+  author: IAuthor
 
   constructor() { }
 
