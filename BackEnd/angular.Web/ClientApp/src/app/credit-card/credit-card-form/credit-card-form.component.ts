@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICreditCard } from '../credit-card';
 import { CreditCardService } from '../credit-card.service';
-  
+import { CreditCardValidators } from './creditcard.validator';
+
 @Component({
   selector: 'app-credit-card-form',
   templateUrl: './credit-card-form.component.html',
@@ -22,14 +23,14 @@ export class CreditCardFormComponent implements OnInit {
   creditCardId: number;
 
 
-  ngOnInit()
-  {
+  ngOnInit() {
+
     this.formGroup = this.fb.group({
-      name: '',
-      number: 0,
-      expMonth: '',
-      expYear:'',
-      cvv: 0,
+      name: ['', Validators.required],
+      number: [0, Validators.required, CreditCardValidators.lenghtnot16],
+      expMonth: [0, Validators.required, CreditCardValidators.monthnotbetween1_12],
+      expYear: [0, Validators.required, CreditCardValidators.nonexpiredcard],
+      cvv: [0, Validators.required, CreditCardValidators.lenghtnot3],
     });
 
     this.activatedRoute.params.subscribe(params => {
@@ -62,7 +63,7 @@ export class CreditCardFormComponent implements OnInit {
 
     if (this.editMode) {
       //edit credit card
-      
+
       var x: number = +this.creditCardId;
       creditCard.id = x;
       this.creditCardService.updateCreditCard(creditCard)
@@ -81,5 +82,15 @@ export class CreditCardFormComponent implements OnInit {
     this.router.navigate(["/credit-card"]);
   }
 
+  findInvalidControls() {
+    const invalid = [];
+    const controls = this.formGroup.controls;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        invalid.push(name);
+      }
+    }
+    return invalid;
+  }
 
 }
