@@ -54,3 +54,7 @@ Thumbs.db
 /BackEnd/.vs/Angular/v16/.suo
 
 /BackEnd/EmailService/obj/Debug/netcoreapp3.1/EmailService.csprojAssemblyReference.cache
+
+/BackEnd/EmailService/bin/Debug/netcoreapp3.1/EmailService.dll
+/BackEnd/EmailService/obj/Debug/netcoreapp3.1/EmailService.dll
+/BackEnd/EmailService/obj/Debug/netcoreapp3.1/EmailService.pdb
