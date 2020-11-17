@@ -24,3 +24,12 @@ C:/sebastian/scrum/BackEnd/EmailService/obj/Debug/netcoreapp3.1/EmailService.pdb
 /Users/jobindaniel/Documents/FIU/CEN4010/scrum/BackEnd/EmailService/obj/Debug/netcoreapp3.1/EmailService.csproj.CoreCompileInputs.cache
 /Users/jobindaniel/Documents/FIU/CEN4010/scrum/BackEnd/EmailService/obj/Debug/netcoreapp3.1/EmailService.dll
 /Users/jobindaniel/Documents/FIU/CEN4010/scrum/BackEnd/EmailService/obj/Debug/netcoreapp3.1/EmailService.pdb
+C:\Jobin\scrum\BackEnd\EmailService\bin\Debug\netcoreapp3.1\EmailService.deps.json
+C:\Jobin\scrum\BackEnd\EmailService\bin\Debug\netcoreapp3.1\EmailService.dll
+C:\Jobin\scrum\BackEnd\EmailService\bin\Debug\netcoreapp3.1\EmailService.pdb
+C:\Jobin\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.csprojAssemblyReference.cache
+C:\Jobin\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfoInputs.cache
+C:\Jobin\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfo.cs
+C:\Jobin\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.CoreCompileInputs.cache
+C:\Jobin\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.dll
+C:\Jobin\scrum\BackEnd\EmailService\obj\Debug\netcoreapp3.1\EmailService.pdb
