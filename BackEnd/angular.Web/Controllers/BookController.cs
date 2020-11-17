@@ -18,9 +18,40 @@ namespace reactiveFormWeb.Controllers
     [Route("api/Book")]
     public class BookController : CRUDController<Book, BookFilter>
     {
+        private readonly ApplicationDbContext _context;
+
         public BookController(ApplicationDbContext context, IConfiguration configuration, UserManager<ApplicationUser> userManager) : base(context, configuration)
         {
+            _context = context; 
+        }
 
+        [HttpGet("Genre/{genreId}")]
+        public IEnumerable<Book> GetAllBooksWithGenre([FromRoute] int genreId)
+        {
+            List<Book> results = new List<Book>();
+            foreach(Book book in _context.Book)
+            {
+                if (book.GenreId == genreId) {
+                    results.Add(book); 
+                }
+            }
+           
+            return results; 
+        }
+
+        [HttpGet("Author/{authorId}")]
+        public IEnumerable<Book> GetAllBooksWithAuthor([FromRoute] int authorId)
+        {
+            List<Book> results = new List<Book>();
+            foreach (Book book in _context.Book)
+            {
+                if (book.AuthorId == authorId)
+                {
+                    results.Add(book);
+                }
+            }
+
+            return results;
         }
 
         protected override IQueryable<Book> ApplyFilter(BookFilter filter)

@@ -1,12 +1,44 @@
 <p>Genre</p>
 
-<form [formGroup]="genreSearchForm" (ngSubmit)="onSubmit()">
+<form action="/" [formGroup]="genreSearchForm" (ngSubmit)="onSubmit()">
 
-  <select class="custom-select">
+  <select formControlName="genre" class="custom-select">
+
     <option value="" disabled>Select Genre</option>
-    <option >Horror</option>
+    <option *ngFor="let genreInfo of genreData"
+            [value]="genreInfo.id">
+      {{genreInfo.name}}
+    </option>
+
+
 
   </select>
+
+
   <button type="submit">Search</button>
 
 </form>
+
+<table class="table" *ngIf="bookData && bookData.length">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Sales price</th>
+      <th>Description</th>
+      <th>Publishing Info</th>
+      <th>Author Id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of bookData">
+      <td>{{book.title}}</td>
+      <td>{{book.salesPrice}}</td>
+      <td>{{book.description}}</td>
+      <td>{{book.publishingInfo}}</td>
+      <td>{{book.authorId}}</td>
+      <td>
+        <button [routerLink]='["/book-edit/" + book.id]'>Add to Cart</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

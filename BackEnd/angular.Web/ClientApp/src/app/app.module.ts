@@ -13,6 +13,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BookComponent } from './book/book.component';
 import { AuthorComponent } from './author/author.component';
 import { GenreComponent } from './genre/genre.component';
+import { GenreService } from './genre/genre.service';
 import { BookFormComponent } from './book/book-form/book-form.component';
 import { GenreFormComponent } from './genre/genre-form/genre-form.component';
 import { AuthorFormComponent } from './author/author-form/author-form.component';
@@ -28,6 +29,7 @@ import { AddressFormComponent } from './address/address-form/address-form.compon
 import { UserProfileFormComponent } from './user-profile/user-profile-form/user-profile-form.component';
 import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
 import { EmailConfirmSentComponent } from './account/email-confirm-sent/email-confirm-sent.component';
+import { BookDetailComponent } from './book/book-detail/book-detail.component';
 import { PwdChangeComponent } from './account/pwd-change/pwd-change.component';
 import { VerifyTokenResetPasswordComponent } from './account/verify-token-reset-password/verify-token-reset-password.component';
 import { WishlistDetailsComponent } from './wishlist/wishlist-details/wishlist-details.component';
@@ -36,7 +38,8 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { WishlistService } from './wishlist/wishlist.service';
 import { WishlistFormComponent } from './wishlist/wishlist-form/wishlist-form.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { BookDetailComponent } from './book/book-detail/book-detail.component';
+
+
 
 
 @NgModule({
@@ -61,13 +64,13 @@ import { BookDetailComponent } from './book/book-detail/book-detail.component';
     AddressFormComponent,
     PwdChangeComponent,
     ForgotPasswordComponent,
+    BookDetailComponent,
     EmailConfirmSentComponent,
     VerifyTokenResetPasswordComponent,
     WishlistComponent,
     WishlistFormComponent,
     WishlistDetailsComponent,
     ShoppingCartComponent
-    BookDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -96,6 +99,7 @@ import { BookDetailComponent } from './book/book-detail/book-detail.component';
       { path: 'address-edit/:id', component: AddressFormComponent },
       { path: 'pwd-change', component: PwdChangeComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'book-detail/:id', component: BookDetailComponent },
       { path: 'email-confirm-sent', component: EmailConfirmSentComponent },
       { path: 'verify-token-reset-password', component: VerifyTokenResetPasswordComponent },
       { path: 'wishlist', component: WishlistComponent },
@@ -103,13 +107,13 @@ import { BookDetailComponent } from './book/book-detail/book-detail.component';
       { path: 'wishlist-edit/:id', component: WishlistFormComponent },
       { path: 'wishlist-details/:id', component: WishlistDetailsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent}
-      { path: 'book-detail/:id', component: BookDetailComponent },
     ])
   ],
   providers: [BookService,
     AuthGuardService,
     AccountService,
     WishlistService,
+    GenreService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
