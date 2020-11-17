@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gkbxB+k95AxGT4jta24tcgdqEvB9lEDQ8FtKGOkwia8XAVdPG5JvCJsFEABd3vHAn1wG7IrgTeaQ8aTeVnrwtQ==",
+  "dgSpecHash": "OZFg6P6NIanGtzWCdjCAgQwizJZpLoZDYliD0xflizy4Ho5d/+iSgd0i6WhbXSn5Hz5aNmA9k782ljUrrtoBhA==",
   "success": true,
-  "projectFilePath": "C:\\Jobin\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
+  "projectFilePath": "C:\\jennifer\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BFornaris\\.nuget\\packages\\mailkit\\2.0.1\\mailkit.2.0.1.nupkg.sha512",
     "C:\\Users\\BFornaris\\.nuget\\packages\\microsoft.aspnetcore.http.features\\3.1.0\\microsoft.aspnetcore.http.features.3.1.0.nupkg.sha512",
