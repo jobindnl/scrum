@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthorService } from '../../author/author.service';
+import { GenreService } from '../../genre/genre.service';
 import { IBook } from '../book';
 import { BookService } from '../book.service';
   
@@ -10,11 +12,17 @@ import { BookService } from '../book.service';
   styleUrls: ['./book-form.component.css']
 })
 export class BookFormComponent implements OnInit {
-
+  public genreData: Array<any>;
+  public authorData: Array<any>;
   constructor(private fb: FormBuilder,
     private bookService: BookService,
+    private genreService: GenreService,
+    private authorService: AuthorService,
     private router: Router,
-    private activatedRoute: ActivatedRoute ) { }
+    private activatedRoute: ActivatedRoute) {
+    genreService.getAll().subscribe((data: any) => this.genreData = data);
+    authorService.getAll().subscribe((data: any) => this.authorData = data);
+  }
 
 
   editMode: boolean = false;

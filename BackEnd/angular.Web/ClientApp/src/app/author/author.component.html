@@ -1,1 +1,40 @@
-<p>author works!</p>
+<p>Author</p>
+
+<form action="/" [formGroup]="authorSearchForm" (ngSubmit)="onSubmit()">
+
+  <select formControlName="author" class="custom-select">
+
+    <option value="" disabled>Select Author</option>
+    <option *ngFor="let authorInfo of authorData"
+            [value]="authorInfo.id">
+      {{authorInfo.name}}
+    </option>
+
+  </select>
+
+  <button type="submit">Search</button>
+
+</form>
+<table class="table" *ngIf="bookData && bookData.length">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Sales price</th>
+      <th>Description</th>
+      <th>Publishing Info</th>
+      <th>Author Id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of bookData">
+      <td>{{book.title}}</td>
+      <td>{{book.salesPrice}}</td>
+      <td>{{book.description}}</td>
+      <td>{{book.publishingInfo}}</td>
+      <td>{{book.authorId}}</td>
+      <td>
+        <button [routerLink]='["/book-edit/" + book.id]'>Add to Cart</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
