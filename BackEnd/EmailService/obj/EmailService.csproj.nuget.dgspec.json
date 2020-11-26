@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Jobin\\scrum\\BackEnd\\EmailService\\EmailService.csproj": {}
+    "C:\\jennifer\\scrum\\BackEnd\\EmailService\\EmailService.csproj": {}
   },
   "projects": {
-    "C:\\Jobin\\scrum\\BackEnd\\EmailService\\EmailService.csproj": {
+    "C:\\jennifer\\scrum\\BackEnd\\EmailService\\EmailService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Jobin\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
+        "projectUniqueName": "C:\\jennifer\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
         "projectName": "EmailService",
-        "projectPath": "C:\\Jobin\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
+        "projectPath": "C:\\jennifer\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
         "packagesPath": "C:\\Users\\BFornaris\\.nuget\\packages\\",
-        "outputPath": "C:\\Jobin\\scrum\\BackEnd\\EmailService\\obj\\",
+        "outputPath": "C:\\jennifer\\scrum\\BackEnd\\EmailService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
