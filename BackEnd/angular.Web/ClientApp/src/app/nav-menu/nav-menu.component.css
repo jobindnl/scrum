@@ -4,9 +4,9 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-.navbar {
-  max-height: 41px;
-}
+/*.navbar {*/
+/*  max-height: 41px;*/
+/*}*/
 
 html {
   font-size: 14px;
@@ -25,13 +25,12 @@ html {
   text-decoration: none;
   color: white;
   transition: 0.3s;
-  font-weight: 200;
 }
 
-.nav-item:hover {
-  background-color: #000;
-  margin: 0px;
-}
+/*.nav-item:hover {*/
+/*  background-color: #000;*/
+/*  margin: 0px;*/
+/*}*/
 
 .fa {
   padding-right: 4px;

@@ -19,8 +19,7 @@ export class WishlistComponent implements OnInit {
   }
 
   loadData() {
-    this.wishlistService.getWishlist()
-      .subscribe(wishlistsfromapi => this.wishlists = wishlistsfromapi,
+    this.wishlistService.getWishlist().subscribe(wishlistsfromapi => this.wishlists = wishlistsfromapi,
       error => console.error(error));
   }
 
