@@ -27,11 +27,20 @@ html {
   transition: 0.3s;
 }
 
-/*.nav-item:hover {*/
-/*  background-color: #000;*/
-/*  margin: 0px;*/
-/*}*/
+.nav-item:hover {
+  background-color: #000;
+  margin: 0px;
+}
 
 .fa {
-  padding-right: 4px;
+  padding-right: 5px;
+}
+
+
+.fa-sign-in{
+  color: red;
+}
+
+.fa-sign-in{
+  color: red;
 }
