@@ -47,7 +47,7 @@ namespace angular.Web.Controllers
                 var query = ApplyFilter(filter);
                 query = query
                     .Include(x => x.Book).ThenInclude(x => x.Author)
-                    .Include(x => x.Book).ThenInclude(x=> x.Genre);
+                    .Include(x => x.Book).ThenInclude(x => x.Genre);
                 query = query.Where(x => x.WishListId == filter.WishListId);
 
                 if (!string.IsNullOrEmpty(options.OrderBy))

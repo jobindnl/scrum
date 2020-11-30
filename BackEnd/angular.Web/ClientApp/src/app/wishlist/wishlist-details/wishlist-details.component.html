@@ -1,7 +1,4 @@
-<h1>Wishlists</h1>
-
-<button *ngIf="loggedIn()" [routerLink]='["/wishlistdetail-add"]' class="btn-primary btn-primary-primary">Add detail </button>
-
+<h1>Wishlist Details</h1>
 <table class="table" *ngIf="wishlistDetails && wishlistDetails.length">
   <thead>
     <tr>
@@ -16,9 +13,9 @@
       <td>{{detail.book.salesPrice}}</td>
       <td>{{detail.quantity}}</td>
       <td>
-        <button [routerLink]='["/wishlistdetail-edit/" + detail.id]'>Edit</button>
         <button (click)="delete(detail)">Delete</button>
-        <button [routerLink]='["/wishlist-details/" + detail.id]'>View details</button>
+        <button (click)="delete(detail)">Add to Cart</button>
+        <button [routerLink]='["/wishlistdetail-edit/" + detail.id]'>Move to Other Wishlist</button>
       </td>
     </tr>
   </tbody>

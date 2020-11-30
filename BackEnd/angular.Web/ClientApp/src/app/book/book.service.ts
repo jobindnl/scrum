@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IWishlistDetail } from '../wishlist/wishlist-details/wishlist-details';
 import { IBook } from './book';
 
 @Injectable({

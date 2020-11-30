@@ -25,6 +25,7 @@
         <button *ngIf="isAdmin()" [routerLink]='["/book-edit/" + book.id]'>Edit</button>
         <button *ngIf="isAdmin()" (click)="delete(book)">Delete</button>
         <button *ngIf="loggedIn() && !isAdmin()" [routerLink]='["/book-edit/" + book.id]'>Add to Cart</button>
+        <button *ngIf="loggedIn()">Add to wishlist</button> <!---Add to Wishlist has no functionlity yet.--->
       </td>
     </tr>
   </tbody>
