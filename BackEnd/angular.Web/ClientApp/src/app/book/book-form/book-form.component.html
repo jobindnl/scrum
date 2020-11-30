@@ -63,7 +63,7 @@
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('publishingInfo').touched || formGroup.get('publishingInfo').dirty) && !formGroup.get('publishingInfo').valid }">
       <label class="col-md-2 control-label"
-             for="publishingInfo">publishingInfo</label>
+             for="publishingInfo">Publishing Info</label>
 
       <div class="col-md-8">
         <input class="form-control"
@@ -81,14 +81,18 @@
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('authorId').touched || formGroup.get('authorId').dirty) && !formGroup.get('authorId').valid }">
       <label class="col-md-2 control-label"
-             for="authorId">authorId</label>
+             for="authorId">Author</label>
 
       <div class="col-md-8">
-        <input class="form-control"
-               id="authorId"
-               type="number"
-               required
-               formControlName="authorId" />
+        <select formControlName="authorId" class="custom-select">
+
+          <option value="" disabled>Select Author</option>
+          <option *ngFor="let authorInfo of authorData"
+                  [value]="authorInfo.id">
+            {{authorInfo.name}}
+          </option>
+
+        </select>
         <span class="alert alert-danger" *ngIf="(formGroup.get('authorId').touched || formGroup.get('authorId').dirty) && formGroup.get('authorId').errors">
           <span *ngIf="formGroup.get('authorId').errors.required">
             Please enter author Id
@@ -99,14 +103,17 @@
     <div class="form-group"
          [ngClass]="{'has-error': (formGroup.get('genreId').touched || formGroup.get('genreId').dirty) && !formGroup.get('genreId').valid }">
       <label class="col-md-2 control-label"
-             for="genreId">genreId</label>
+             for="genreId">Genre</label>
 
       <div class="col-md-8">
-        <input class="form-control"
-               id="genreId"
-               type="number"
-               required
-               formControlName="genreId" />
+        <select formControlName="genreId" class="custom-select">
+
+          <option value="" disabled>Select Genre</option>
+          <option *ngFor="let genreInfo of genreData"
+                  [value]="genreInfo.id">
+            {{genreInfo.name}}
+          </option>
+        </select>
         <span class="alert alert-danger" *ngIf="(formGroup.get('genreId').touched || formGroup.get('genreId').dirty) && formGroup.get('genreId').errors">
           <span *ngIf="formGroup.get('genreId').errors.required">
             Please enter genre Id

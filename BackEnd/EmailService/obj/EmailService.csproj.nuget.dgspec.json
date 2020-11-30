@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\sebastian\\scrum\\BackEnd\\EmailService\\EmailService.csproj": {}
+    "C:\\jennifer\\scrum\\BackEnd\\EmailService\\EmailService.csproj": {}
   },
   "projects": {
-    "C:\\sebastian\\scrum\\BackEnd\\EmailService\\EmailService.csproj": {
+    "C:\\jennifer\\scrum\\BackEnd\\EmailService\\EmailService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\sebastian\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
+        "projectUniqueName": "C:\\jennifer\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
         "projectName": "EmailService",
-        "projectPath": "C:\\sebastian\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
-        "packagesPath": "C:\\Users\\sebit\\.nuget\\packages\\",
-        "outputPath": "C:\\sebastian\\scrum\\BackEnd\\EmailService\\obj\\",
+        "projectPath": "C:\\jennifer\\scrum\\BackEnd\\EmailService\\EmailService.csproj",
+        "packagesPath": "C:\\Users\\BFornaris\\.nuget\\packages\\",
+        "outputPath": "C:\\jennifer\\scrum\\BackEnd\\EmailService\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\sebit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BFornaris\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -62,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

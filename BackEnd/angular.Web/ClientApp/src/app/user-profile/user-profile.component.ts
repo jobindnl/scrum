@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
       nickName: '',
       email: '',
       homeAddressId: '',
-      defaultCreditCardId: ''
+      defaultCreditCardId: '' 
     });
     this.userProfileId = 1;
     this.userProfileService.getUserProfile(this.userProfileId.toString())

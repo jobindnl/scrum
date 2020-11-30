@@ -39,9 +39,11 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\account\forgot-password\forgot-password.ts" />
+    <None Remove="ClientApp\src\app\author\author.ts" />
     <None Remove="ClientApp\src\app\account\verify-token-reset-password\verify-token-reset-password.validator.ts" />
     <None Remove="ClientApp\src\app\book\book.ts" />
     <None Remove="ClientApp\src\app\account\pwd-change\old-pwd.validator.ts" />
+    <None Remove="ClientApp\src\app\credit-card\credit-card-form\creditcard.validator.ts" />
     <None Remove="ClientApp\src\app\user-profile\user-profile.ts" />
   </ItemGroup>
 
@@ -77,6 +79,9 @@
 	
   <ItemGroup>
     <TypeScriptCompile Update="ClientApp\src\app\account\verify-token-reset-password\verify-token-reset-password.validator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\app\credit-card\credit-card-form\creditcard.validator.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>  
